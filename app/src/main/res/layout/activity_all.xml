@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main.AllActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+
+            android:gravity="center"
+            android:text="Bienvenido"
+            android:textSize="@dimen/text_size_h1"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_currentuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+
+            android:gravity="center"
+            android:text="Seleccione Actividad"
+            android:textSize="13dp" />
+        <!-- 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:layout_weight="1"
+                android:background="#FFF"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnAddWorker"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+                    android:gravity="center"
+                    android:onClick="btnAddWorker"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="95dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_addtrabajador" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:gravity="center"
+                        android:text="Agregar\nTrabajador"
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnDeleteWorker"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+
+                    android:gravity="center"
+                    android:onClick="btnDeleteWorker"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="95dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_dardebaja" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:gravity="center"
+                        android:text="Dar de baja\nTrabajador"
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <!-- 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnInputData"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+                    android:gravity="center"
+                    android:onClick="btnInputData"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="95dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_personal_input" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:gravity="center"
+                        android:text="Ingresar\nDatos "
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnReportData"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+                    android:gravity="center"
+                    android:onClick="btnReportData"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="95dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_pdf" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:gravity="center"
+                        android:text="Reporte\nDatos"
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnVisualData"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+                    android:gravity="center"
+                    android:onClick="btnVisualData"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_chart" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:gravity="center"
+                        android:text="Visualizar\nDatos"
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="btnQueryMinero"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/mt_card_all"
+                    android:layout_marginBottom="@dimen/mb_card_all"
+                    android:gravity="center"
+                    android:onClick="btnQueryMinero"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_personal_consulta" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:text="Consultar\nDatos"
+                        android:textSize="@dimen/text_size_h3"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_selectedunidadminera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:gravity="center"
+                android:text="UNIDAD DE TRABAJO"
+                android:textSize="@dimen/text_size_h3"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:text="UNIDAD DE TRABAJO"
+                android:textSize="@dimen/text_size_h3" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

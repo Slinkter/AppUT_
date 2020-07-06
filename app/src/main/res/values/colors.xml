@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="color_error">#FF0000</color>
+    <color name="color_info_personal">#00BCD4</color>
+    <color name="txt_color_rv_number">#707070</color>
+    <color name="border_color_edge">#707070</color>
+
+
+    <color name="rango_normal">#11E6A5</color>
+    <color name="rango_leve">#FFEB3B</color>
+    <color name="rango_moderada">#FF2626</color>
+    <color name="rango_severa">#FF0000</color>
+
+
+    <color name="rango_excelente">#267960</color>
+    <color name="rango_bueno">#11E6A5</color>
+    <color name="rango_adecuado">#FFF003</color>
+    <color name="rango_inadecuado">#FF0000</color>
+
+
+    <color name="bg_color_cardview">#AAA8A8</color>
+    <color name="ringtwo">#368CF4</color>
+    <color name="ringone">#0EE94D</color>
+    <color name="colorWhite">#FFFFFF</color>
+</resources>

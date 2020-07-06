@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="8dp"
+    app:cardUseCompatPadding="true"
+    tools:context=".Main.InputDataWorkerActivity">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:fitsSystemWindows="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Registrar Síntomas"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_dni_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="DNI"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="8"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_dni">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_dni"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="8" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_input_consulta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/colorPrimary"
+
+                        android:text="Buscar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:text="Datos del Trabajador "
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/show_consulta_nombre_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="Nombre"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_account">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/show_consulta_nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/show_consulta_edad_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="Edad"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_age">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/show_consulta_edad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:text="Métricas "
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_temperatura_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="Temperatura  [35 - 43]"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_tempe">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_temperatura"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:inputType="numberDecimal"
+                            android:maxLength="5" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_saturacion_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="Saturación [85-100]"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_age">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_saturacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:inputType="number"
+                            android:maxLength="3" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_pulso_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/mb_input"
+                        android:hint="Pulso [50-115] "
+                        app:endIconMode="custom"
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_pulso">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_pulso"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="3" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:text="Síntomas "
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/s1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tos"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dolor de garganta"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Congestion nasal"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fiebre"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Malestar general"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dificultad respiratoria"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diarrea"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nausea/Vómito"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cafalea"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Irritabilidad/Confusión"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dolor muscular"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dolor adbominal"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dolor pecho"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dolor articulaciones"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/s15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ninguno"
+                            android:textColor="@color/border_color_edge"
+                            android:textSize="@dimen/tx_size_checkout"
+                            android:visibility="gone"
+                            app:useMaterialThemeColors="false" />
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_sintomas_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:visibility="gone"
+                        app:endIconMode="custom"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:id="@+id/input_sintomas"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:gravity="top"
+
+                            android:inputType="textMultiLine"
+                            android:overScrollMode="always"
+                            android:padding="15dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="start"
+                    android:text="Exámen"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prueba Rápida "
+                        android:textSize="@dimen/tx_size_checkout" />
+
+                    <CheckBox
+                        android:id="@+id/input_test_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SI"
+                        android:textColor="@color/border_color_edge"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/input_test_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NO"
+                        android:textColor="@color/border_color_edge"
+                        app:useMaterialThemeColors="false" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btn_input_data"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="Ingresar" />
+
+                    <Button
+                        android:id="@+id/btn_input_back"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Regresar" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>
