@@ -2,16 +2,21 @@ package com.cudpast.apputdemo.Main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.cudpast.apputdemo.Common.Common;
+import com.cudpast.apputdemo.Model.Personal;
 import com.cudpast.apputdemo.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,11 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddWorkerActivity extends AppCompatActivity {
+    // todo cuando registra al nuevo personal se repite el dni o se chanca ensima
 
     public static final String TAG = AddWorkerActivity.class.getSimpleName();
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
+
+    Personal personal;
 
     private TextInputLayout
             personal_dni_layout,
@@ -53,6 +61,8 @@ public class AddWorkerActivity extends AppCompatActivity {
 
     private Button btn_personal_create_user, btn_personal_back_main;
     private ProgressDialog mDialog;
+
+    Boolean check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +116,8 @@ public class AddWorkerActivity extends AppCompatActivity {
 
 
     private void createNewPersonal() {
-        checkWorker(personal_name.getText().toString());
-        /*
+
+
         if (submitForm()) {
 
             mDialog = new ProgressDialog(AddWorkerActivity.this);
@@ -146,7 +156,6 @@ public class AddWorkerActivity extends AppCompatActivity {
                     });
         }
 
-        */
     }
 
     private void gotoMAin() {
@@ -158,38 +167,56 @@ public class AddWorkerActivity extends AppCompatActivity {
     // checko DNI en base de datos si existe
 
     public void checkWorker(String dni) {
-        // todo cuando registra al nuevo personal se repite el dni .
-        Log.e(TAG, " dni : " + dni);
 
+        check = false;
 
-        final DatabaseReference postRef = FirebaseDatabase.getInstance().getReference(Common.db_unidad_trabajo_personal)
+        DatabaseReference ref_1 = database
+                .getReference(Common.db_unidad_trabajo_personal)
                 .child(Common.currentUser.getUid())
                 .child(Common.unidadTrabajoSelected.getIdUT())
                 .child(dni);
-        Log.e(TAG, "url" + postRef);
 
-        postRef.orderByChild("dni").equalTo(dni).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e(TAG, "url" + postRef.orderByChild("dni"));
-                Log.e(TAG, "1" + dataSnapshot.getKey());
-                Log.e(TAG, "2" + dataSnapshot.getChildren());
-                Log.e(TAG, "3" + dataSnapshot.getValue());
+        ref_1
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        personal = dataSnapshot.getValue(Personal.class);
 
-                if (dataSnapshot.exists()) {
-                    Log.e(TAG, "existe el dni : " + dataSnapshot);
-                } else {
-                    Log.e(TAG, "no existe el dni : " + dataSnapshot);
-                }
-            }
+                        if (personal != null) {
+                            //    InputMethodManager imn = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            //    imn.showSoftInput(personal_dni, InputMethodManager.SHOW_IMPLICIT);
+                            Log.e(TAG, "nombre : " + personal.getName());
+                            Log.e(TAG, "dni : " + personal.getDni());
+                            personal_dni_layout.setError("EL DNI  ya se encuentra registrado");
+                            personal_dni_layout.setFocusable(true);
+                            personal_dni_layout.requestFocus();
+                            check = true;
+                        } else {
+                            Log.e(TAG, "el trabjador no existe en  ");
+                         //   personal_dni_layout.setError("EL DNI disponible");
+                            check = false;
+                        }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, " errror : " + databaseError.getMessage());
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e(TAG, "error : " + databaseError.getMessage());
+                        check = false;
 
+                    }
+                });
 
+    }
+
+    private boolean checkExistDNI() {
+        Log.e(TAG, "check 1 " + check);
+        if (!check) {
+            return true;
+        } else {
+            personal_dni_layout.setError(null);
+        }
+
+        return false;
     }
 
     //Validacion
@@ -274,10 +301,16 @@ public class AddWorkerActivity extends AppCompatActivity {
         return true;
     }
 
-
     private boolean submitForm() {
 
+        checkWorker(personal_dni.getText().toString().trim());
+
+
         if (!checkDNI()) {
+            return false;
+        }
+
+        if (!checkExistDNI()) {
             return false;
         }
 
