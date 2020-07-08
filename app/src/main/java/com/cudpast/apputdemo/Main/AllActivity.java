@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,8 @@ public class AllActivity extends AppCompatActivity {
 
 
     private TextView tv_selectedunidadminera, tv_currentuser;
+    private Animation mAnimationBtn;
+    private LinearLayout allmain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,10 @@ public class AllActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all);
 
         tv_selectedunidadminera = findViewById(R.id.tv_selectedunidadminera);
-        tv_selectedunidadminera.setText(Common.unidadTrabajoSelected.getAliasUT());
+        tv_selectedunidadminera.setText(Common.unidadTrabajoSelected.getNameUT());
+        mAnimationBtn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation);
+        allmain= findViewById(R.id.allmain);
+        allmain.setAnimation(mAnimationBtn);
 
 
         //

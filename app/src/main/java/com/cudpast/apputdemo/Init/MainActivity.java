@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private int numUT;
     Boolean checkUT;
 
+    private Animation mAnimationBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-
+        mAnimationBtn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation);
         user_current = findViewById(R.id.user_current);
         user_status = findViewById(R.id.user_status);
         addUT = findViewById(R.id.addUT);
@@ -110,15 +114,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, " Unidad de trabajo : nombre " + listaUT.get(position - 1).getNameUT());
                         Common.unidadTrabajoSelected = listaUT.get(position - 1);
                         btnContinuar.setVisibility(View.VISIBLE);
+                        btnContinuar.setAnimation(mAnimationBtn);
                     }
                 } else {
                     btnContinuar.setVisibility(View.INVISIBLE);
+                    btnContinuar.setAnimation(null);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                btnContinuar.setAnimation(null);
             }
 
         });

@@ -10,7 +10,6 @@
     app:cardUseCompatPadding="true"
     tools:context=".Main.AddWorkerActivity">
 
-
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -52,8 +51,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/testsize"
-
+                        android:layout_marginBottom="@dimen/mb_input"
                         android:hint="DNI"
                         app:counterEnabled="true"
                         app:counterMaxLength="8"
