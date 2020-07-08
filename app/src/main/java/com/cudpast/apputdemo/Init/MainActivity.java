@@ -38,7 +38,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    //todo :  al registrar una UN no debe repetirse el nombre .
+
     private Button btnContinuar;
     private Spinner spinner_unidadMinera;
     private ArrayList<String> listaUnidadMinera;

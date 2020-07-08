@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddWorkerActivity extends AppCompatActivity {
-    // todo cuando registra al nuevo personal se repite el dni o se chanca ensima
+
 
     public static final String TAG = AddWorkerActivity.class.getSimpleName();
 
@@ -69,10 +69,7 @@ public class AddWorkerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_add_worker);
-
-        // todo cuando registra al nuevo personal se repite el dni .
-
+        setContentView(R.layout.activity_add_worker);∫
         //
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();

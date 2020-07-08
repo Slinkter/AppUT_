@@ -76,10 +76,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
     List<Integer> listSaturacion;
     List<Integer> listPulso;
     //
-
     private List<MetricasPersonal> listtemp;
-
-    // todo : agregar s1,s2,s3,s4
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1228,7 +1225,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         cansas01.drawText("s7.", 1080, 415, myPaint);
 
 
-
         //
         int ytext = 400;
         int ysum = 50;
@@ -1268,6 +1264,53 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             Log.e(TAG, "list_MetricasPersonales " + i + "  s7 " + list_MetricasPersonales.get(i).getS7());
             ysumname = ysumname + 50;
             cansas01.drawText(listDate.get(i).substring(0, 10).trim(), 130, ytextname + ysumname, myPaint);
+            /*
+            cansas01.drawText(list_MetricasPersonales.get(i).getS2().toString(), 600, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS2().toString(), 680, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS3().toString(), 760, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS4().toString(), 840, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS5().toString(), 920, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS6().toString(), 1000, ytextname + ysumname, myPaint);
+            cansas01.drawText(list_MetricasPersonales.get(i).getS7().toString(), 1080, ytextname + ysumname, myPaint);
+            */
+            if (list_MetricasPersonales.get(i).getS1()) {
+                cansas01.drawText("si", 600, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 600, ytextname + ysumname, myPaint);
+            }
+            if (list_MetricasPersonales.get(i).getS2()) {
+                cansas01.drawText("si", 680, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 680, ytextname + ysumname, myPaint);
+            }
+            if (list_MetricasPersonales.get(i).getS3()) {
+                cansas01.drawText("si", 760, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 760, ytextname + ysumname, myPaint);
+            }
+            if (list_MetricasPersonales.get(i).getS4()) {
+                cansas01.drawText("si", 840, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 840, ytextname + ysumname, myPaint);
+            }
+
+            if (list_MetricasPersonales.get(i).getS5()) {
+                cansas01.drawText("si", 920, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 920, ytextname + ysumname, myPaint);
+            }
+
+            if (list_MetricasPersonales.get(i).getS6()) {
+                cansas01.drawText("si", 1000, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 1000, ytextname + ysumname, myPaint);
+            }
+            if (list_MetricasPersonales.get(i).getS7()) {
+                cansas01.drawText("si", 1080, ytextname + ysumname, myPaint);
+            } else {
+                cansas01.drawText("no", 1080, ytextname + ysumname, myPaint);
+            }
+
         }
 
 
@@ -1310,6 +1353,8 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             }
             cansas01.drawText(listPulso.get(i).toString(), 500, ytext + ysum, pulse);
             //
+
+
         }
 
         try {
@@ -1328,10 +1373,21 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             Log.e(TAG, "cadTemp : " + cadTemp);
             Log.e(TAG, "cadSa : " + cadSa);
             Log.e(TAG, "cadPulse : " + cadPulse);
-            cansas01.drawText("Promedio de los ultimos " + size + " días", 35, 1600, myPaint);
-            cansas01.drawText("Promedio temperatura : " + cadTemp.substring(0, 4), 35, 1650, myPaint);
-            cansas01.drawText("Promedio SO2  : " + cadSa.substring(0, 4), 35, 1700, myPaint);
-            cansas01.drawText("Promedio pulso : " + cadPulse.substring(0, 4), 35, 1750, myPaint);
+            cansas01.drawText("Promedio de los ultimos " + size + " días", 35, 1400, myPaint);
+            cansas01.drawText("Promedio temperatura : " + cadTemp.substring(0, 4), 35, 1450, myPaint);
+            cansas01.drawText("Promedio SO2  : " + cadSa.substring(0, 4), 35, 1500, myPaint);
+            cansas01.drawText("Promedio pulso : " + cadPulse.substring(0, 4), 35, 1550, myPaint);
+            //
+            cansas01.drawText("Leyenda ", 35, 1600, myPaint);
+            cansas01.drawText("s1 : Tos ", 35, 1650, myPaint);
+            cansas01.drawText("s2 : Dolor de garganta ", 35, 1700, myPaint);
+            cansas01.drawText("s3 : Fiebre ", 35, 1750, myPaint);
+            cansas01.drawText("s4 : Dificultad respitoria", 35, 1800, myPaint);
+            cansas01.drawText("s5 : Diarrea ", 35, 1850, myPaint);
+            cansas01.drawText("s6 : Dolor abdominal ", 35, 1900, myPaint);
+            cansas01.drawText("s7 : Dolor Pecho ", 35, 1950, myPaint);
+
+
             //-------------------------------------------------------------------------------
         } catch (Exception e) {
             Log.e("error promedio  :  ", " --> " + e.getMessage());
@@ -1595,7 +1651,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
     //===============================================================================
 
     public void showTestEmailDNI(final String metodo) {
-        // todo : falta hacer para ver las pruebas rapida
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ReportDataWorkerActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -1653,7 +1709,11 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                         MetricasPersonal metricasPersonal = snapshot.getValue(MetricasPersonal.class);
                                         if (metricasPersonal != null) {
+                                            Log.e(TAG, " [ref_datos_paciente] date : " + metricasPersonal.getTestpruebarapida());
+                                            Log.e(TAG, " [ref_datos_paciente] temperature : " + metricasPersonal.getTestpruebarapida());
+                                            Log.e(TAG, " [ref_datos_paciente] s1 : " + metricasPersonal.getTestpruebarapida());
                                             Log.e(TAG, " [ref_datos_paciente] test : " + metricasPersonal.getTestpruebarapida());
+
                                             if (metricasPersonal.getTestpruebarapida() != null) {
                                                 boolean test = metricasPersonal.getTestpruebarapida();
                                                 if (test) {
@@ -1665,7 +1725,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
                                     try {
                                         String nombre = personal.getName() + " " + personal.getLast();
-
                                         generarPDFTestFast(listtemp, nombre, metodo);
                                     } catch (Exception e) {
                                         Log.e(TAG, "try-catch : " + e.getMessage());
@@ -1844,7 +1903,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
 
     }
-
 
     public void btnReturnAllMain(View view) {
         Intent intent = new Intent(ReportDataWorkerActivity.this, AllActivity.class);
