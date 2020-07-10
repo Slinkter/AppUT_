@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
     private ProgressDialog mDialog;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static final String TAG = LoginActivity.class.getSimpleName();
-
-
     //Check
     private CheckBox checkbox;
     private SharedPreferences sharedPreferences;
@@ -64,9 +62,11 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
         log_email = findViewById(R.id.log_email);
         log_password = findViewById(R.id.log_password);
         btnLogin = findViewById(R.id.btnLogin);
-        //
+        btnRegister = findViewById(R.id.btnRegister);
+        // Btn - Login
         btnLogin.setOnClickListener(v -> initLogin());
-
+        // Btn - Register
+        btnRegister.setOnClickListener(v -> initRegistro());
         // CheckBox
         checkbox = (CheckBox) findViewById(R.id.checkbox_rem);
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

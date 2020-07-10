@@ -112,7 +112,7 @@ public class IntroActivity extends AppCompatActivity {
 
     private void InitData() {
         mList = new ArrayList<>();
-        mList.add(new ScreenItem(" ARSI UT   ", " Aplicativo para el registro de síntomas de personal ", R.drawable.ic_logo_app));
+        mList.add(new ScreenItem(" ARSI UT   ", "(Unidadd de trabajo)\nAplicativo para el registro de síntomas de personal ", R.drawable.ic_logo_app));
         mList.add(new ScreenItem("Síntomas  ", "Registre diariamente temperatura, saturación de oxigeno y pulso  de sus trabajadores  ", R.drawable.ic_intro_register));
         mList.add(new ScreenItem("Registro del Personal", "Registre los datos de su personal en una unidad de trabajo ", R.drawable.ic_intro_employee));
         mList.add(new ScreenItem("Reportes", "Genere reportes diarios por fecha , trabajador y/o prueba rápida", R.drawable.ic_intro_report));
