@@ -63,7 +63,6 @@
                             android:id="@+id/personal_dni"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:inputType="number"
                             android:maxLength="8" />
 
@@ -209,7 +208,6 @@
                             android:id="@+id/personal_phone1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:inputType="number"
                             android:maxLength="9" />
 

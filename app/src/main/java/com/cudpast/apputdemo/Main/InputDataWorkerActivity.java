@@ -392,7 +392,6 @@ public class InputDataWorkerActivity extends AppCompatActivity {
                     input_temperatura_layout.setError("Solo rango [35 - 43]");
                     return false;
                 }
-
                 Log.e(TAG, " number int   " + Integer.parseInt(input_temperatura.getText().toString()));
             }
 

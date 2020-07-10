@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -37,6 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ProgressDialog mDialog;
 
+    private Animation animation;
+    private Vibrator vib;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         //xml
         btnCreateUser = findViewById(R.id.btnCreateUser);
+        // animation error
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         reg_email = (TextInputEditText) findViewById(R.id.reg_email);
         reg_password = (TextInputEditText) findViewById(R.id.reg_password);
@@ -85,36 +95,40 @@ public class RegisterActivity extends AppCompatActivity {
                         int numUT = 0; // por default;
                         //Crear usuario
                         User user = new User(uid, email1, password1, name, dni, phone, status, numUT);
-                        saveUserDB(user);
+                        saveUserDB(user, v);
                     })
                     .addOnFailureListener(e -> {
                         Log.e(TAG, " [createUserWithEmailAndPassword] Error :" + e.getMessage());
-                        if (e.getMessage().equalsIgnoreCase("The email address is already in use by another account.")){
+                        if (e.getMessage().equalsIgnoreCase("The email address is already in use by another account.")) {
                             //Toast.makeText(this, "Este correo ya esta registrador ... intente con otros", Toast.LENGTH_SHORT).show();
-                            Snackbar.make(v,"correo ya esta registrado !!!",Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(v, "correo ya esta registrado !!!", Snackbar.LENGTH_SHORT).show();
                             reg_email.setText("");
                             reg_password.setText("");
                             reg_name.setText("");
                             reg_dni.setText("");
                             reg_phone.setText("");
                             reg_email.requestFocus();
+                        } else {
+                            Snackbar.make(v, "error al crear usuario", Snackbar.LENGTH_SHORT).show();
                         }
                         mDialog.dismiss();
                     });
         }
     }
 
-    private void saveUserDB(final User user) {
+    private void saveUserDB(final User user, View v) {
         DatabaseReference ref_db_user = database.getReference(Common.db_user);
-        ref_db_user.child(user.getUid()).setValue(user)
+        ref_db_user
+                .child(user.getUid())
+                .setValue(user)
                 .addOnSuccessListener(aVoid -> {
                     backToLogin();
-                    Toast.makeText(RegisterActivity.this, "Usuario registrado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "se ha registrado correctamente", Toast.LENGTH_SHORT).show();
+                    //   Snackbar.make(v, "Nuevo usuario creado , inicie session ", Snackbar.LENGTH_LONG).show();
                     Log.e(TAG, "[saveUserDB] : se registro con el uid : " + user.getUid());
                     mDialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
-                 
                     Toast.makeText(RegisterActivity.this, "Error al registrar al usuario ", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "[saveUserDB] :  no se registro");
                     mDialog.dismiss();
@@ -131,6 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean checkEmail() {
         if (reg_email.getText().toString().trim().isEmpty()) {
             reg_email_layout.setError("Ingrese su correo");
+
             return false;
         } else {
             reg_email_layout.setError(null);
@@ -162,6 +177,16 @@ public class RegisterActivity extends AppCompatActivity {
         if (reg_dni.getText().toString().trim().isEmpty()) {
             reg_dni_layout.setError("Ingrese su DNI");
             return false;
+        }  else {
+            reg_dni_layout.setError(null);
+        }
+        return true;
+    }
+
+    private boolean checkSizeDNI() {
+        if (reg_dni.getText().toString().length() < 8) {
+            reg_dni_layout.setError("necesita 8 digitos");
+            return false;
         } else {
             reg_dni_layout.setError(null);
         }
@@ -178,26 +203,69 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
+    private boolean checkSizephone() {
+        if (reg_phone.getText().toString().length() < 9) {
+            reg_phone_layout.setError("necesita 9 digitos");
+            return false;
+        } else {
+            reg_phone_layout.setError(null);
+        }
+        return true;
+    }
+
     private boolean submitForm() {
         if (!checkEmail()) {
+            reg_email_layout.setAnimation(animation);
+            reg_email_layout.startAnimation(animation);
+            vib.vibrate(120);
             return false;
         }
 
         if (!checkPassword()) {
+            reg_password_layout.setAnimation(animation);
+            reg_password_layout.startAnimation(animation);
+            vib.vibrate(120);
             return false;
         }
 
         if (!checkName()) {
+            reg_name_layout.setAnimation(animation);
+            reg_name_layout.startAnimation(animation);
+            vib.vibrate(120);
             return false;
         }
 
         if (!checkDNI()) {
+            reg_dni_layout.setAnimation(animation);
+            reg_dni_layout.startAnimation(animation);
+            vib.vibrate(120);
             return false;
         }
 
-        if (!checkPhone()) {
+
+        if (!checkSizeDNI()){
+            reg_dni_layout.setAnimation(animation);
+            reg_dni_layout.startAnimation(animation);
+            vib.vibrate(120);
             return false;
         }
+
+
+        if (!checkPhone()) {
+            reg_phone_layout.setAnimation(animation);
+            reg_phone_layout.startAnimation(animation);
+            vib.vibrate(120);
+            return false;
+        }
+
+        if (!checkSizephone()) {
+            reg_phone_layout.setAnimation(animation);
+            reg_phone_layout.startAnimation(animation);
+            vib.vibrate(120);
+            return false;
+        }
+
+
         return true;
     }
 

@@ -91,12 +91,15 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+
                 android:id="@+id/reg_dni_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mb_input"
                 android:hint="DNI"
+                app:counterEnabled="true"
+                app:counterMaxLength="8"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_dni">
@@ -117,7 +120,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mb_input"
-                android:hint="Teléfono"
+                android:hint="Teléfono principal"
+                app:counterEnabled="true"
+                app:counterMaxLength="9"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_phone">
@@ -127,7 +132,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-
                     android:maxLength="9" />
 
             </com.google.android.material.textfield.TextInputLayout>
