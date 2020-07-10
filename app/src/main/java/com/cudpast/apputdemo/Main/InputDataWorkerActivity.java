@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class InputDataWorkerActivity extends AppCompatActivity {
     private TextView show_consulta_nombre, show_consulta_edad;
     private TextInputLayout show_consulta_nombre_layout, show_consulta_edad_layout;
     private TextInputLayout input_dni_layout, input_temperatura_layout, input_saturacion_layout, input_pulso_layout, input_sintomas_layout;
+    LinearLayout input_new_sintomas_layout, input_examen_layout;
     private TextInputEditText input_dni, input_temperatura, input_saturacion, input_pulso;
     private EditText input_sintomas;
     private CheckBox input_test_yes, input_test_no;
@@ -60,7 +62,6 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_input_data_worker);
 
 
-
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
@@ -75,7 +76,12 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         input_saturacion_layout = findViewById(R.id.input_saturacion_layout);
         input_pulso_layout = findViewById(R.id.input_pulso_layout);
 
+
         //input_sintomas_layout = findViewById(R.id.input_sintomas_layout);
+
+        input_new_sintomas_layout = findViewById(R.id.input_new_sintomas_layout);
+        input_examen_layout = findViewById(R.id.input_examen_layout);
+
 
         input_dni = findViewById(R.id.input_dni);
         input_temperatura = findViewById(R.id.input_temperatura);
@@ -236,6 +242,11 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         input_test_yes.setEnabled(false);
         input_test_no.setEnabled(false);
 
+        //
+        input_new_sintomas_layout.setEnabled(false);
+        input_examen_layout.setEnabled(false);
+
+
     }
 
     private void checkEnable() {
@@ -252,6 +263,11 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         s7.setEnabled(true);
         input_test_yes.setEnabled(true);
         input_test_no.setEnabled(true);
+
+        //
+        //
+        input_new_sintomas_layout.setEnabled(true);
+        input_examen_layout.setEnabled(true);
     }
 
 
@@ -382,14 +398,17 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
         try {
             if (input_temperatura.getText().toString().trim().isEmpty() && input_temperatura.getText().toString() != null) {
-                input_temperatura_layout.setError("falta ingresar temperatura del trabajador");
+                input_temperatura_layout.setError("*Campo obligatorio");
+                input_temperatura_layout.requestFocus();
                 Log.e("number", " int   " + Integer.parseInt(input_temperatura.getText().toString()));
                 return false;
             } else {
                 input_temperatura_layout.setError(null);
                 int value = Integer.parseInt(input_temperatura.getText().toString());
                 if (value < 35 || value > 43) {
-                    input_temperatura_layout.setError("Solo rango [35 - 43]");
+                    input_temperatura_layout.setError("ERROR: rango no válido para  temperatura ");
+
+                    input_temperatura_layout.requestFocus();
                     return false;
                 }
                 Log.e(TAG, " number int   " + Integer.parseInt(input_temperatura.getText().toString()));
@@ -405,7 +424,8 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
     private boolean checkSaturacion() {
         if (input_saturacion.getText().toString().trim().isEmpty() && input_saturacion.getText().toString().trim() != null) {
-            input_saturacion_layout.setError("falta ingresar SO2 del trabajador");
+            input_saturacion_layout.setError("*Campo obligatorio");
+            input_saturacion_layout.requestFocus();
             return false;
         } else {
             input_saturacion_layout.setError(null);
@@ -413,7 +433,9 @@ public class InputDataWorkerActivity extends AppCompatActivity {
             if (input_saturacion.getText().toString().trim() != null) {
                 int value = Integer.parseInt(input_saturacion.getText().toString());
                 if (value < 85 || value > 100) {
-                    input_saturacion_layout.setError("solo rango [85-100]");
+                    input_saturacion_layout.setError("ERROR: rango no válido para SO2");
+
+                    input_saturacion_layout.requestFocus();
                     return false;
                 }
             }
@@ -423,14 +445,17 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
     private boolean checkPulso() {
         if (input_pulso.getText().toString().trim().isEmpty() && input_pulso.getText().toString() != null) {
-            input_pulso_layout.setError("falta ingresare el pulso del trabajador ");
+            input_pulso_layout.setError("*Campo obligatorio");
+            input_pulso_layout.requestFocus();
             return false;
         } else {
             input_pulso_layout.setError(null);
+            //
             if (input_pulso.getText().toString().trim() != null) {
                 int value = Integer.parseInt(input_pulso.getText().toString());
                 if (value < 50 || value > 115) {
-                    input_pulso_layout.setError("Solo rango [50-115]");
+                    input_pulso_layout.setError("ERROR: rango no válido para  pulso");
+                    input_pulso_layout.requestFocus();
                     return false;
                 }
             }

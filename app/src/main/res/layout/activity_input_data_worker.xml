@@ -27,7 +27,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -75,7 +75,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:backgroundTint="@color/colorPrimary"
-
                         android:text="Buscar" />
 
                     <TextView
@@ -155,7 +154,6 @@
                             android:id="@+id/input_temperatura"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:inputType="numberDecimal"
                             android:maxLength="5" />
 
@@ -217,7 +215,20 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:text="*Nota : si no tiene sintomas dejar en uncheck "
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
+                        android:id="@+id/input_new_sintomas_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -407,6 +418,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/input_examen_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"

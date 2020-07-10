@@ -1373,12 +1373,24 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             Log.e(TAG, "cadTemp : " + cadTemp);
             Log.e(TAG, "cadSa : " + cadSa);
             Log.e(TAG, "cadPulse : " + cadPulse);
-            cansas01.drawText("Promedio de los ultimos " + size + " días", 35, 1400, myPaint);
-            cansas01.drawText("Promedio temperatura : " + cadTemp.substring(0, 4), 35, 1450, myPaint);
-            cansas01.drawText("Promedio SO2  : " + cadSa.substring(0, 4), 35, 1500, myPaint);
-            cansas01.drawText("Promedio pulso : " + cadPulse.substring(0, 4), 35, 1550, myPaint);
+
+            int reducir = 50;
+
+            Paint fontLeyenda = new Paint();
+            fontLeyenda.setTextSize(40);
+            fontLeyenda.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            fontLeyenda.setColor(Color.BLACK);
+
+            cansas01.drawText("Promedios ", 35, 1350 - reducir, fontLeyenda);
+            cansas01.drawText("Promedio de los ultimos " + size + " medidas ", 35, 1400 - reducir, myPaint);
+            cansas01.drawText("Promedio temperatura : " + cadTemp.substring(0, 4), 35, 1450 - reducir, myPaint);
+            cansas01.drawText("Promedio SO2  : " + cadSa.substring(0, 4), 35, 1500 - reducir, myPaint);
+            cansas01.drawText("Promedio pulso : " + cadPulse.substring(0, 4), 35, 1550 - reducir, myPaint);
             //
-            cansas01.drawText("Leyenda ", 35, 1600, myPaint);
+
+
+            cansas01.drawText("Leyenda ", 35, 1600 - 20, fontLeyenda);
+
             cansas01.drawText("s1 : Tos ", 35, 1650, myPaint);
             cansas01.drawText("s2 : Dolor de garganta ", 35, 1700, myPaint);
             cansas01.drawText("s3 : Fiebre ", 35, 1750, myPaint);
