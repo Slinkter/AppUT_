@@ -33,15 +33,15 @@ public class AllActivity extends AppCompatActivity {
         tv_selectedunidadminera = findViewById(R.id.tv_selectedunidadminera);
         tv_selectedunidadminera.setText(Common.unidadTrabajoSelected.getNameUT());
         mAnimationBtn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation);
-        allmain= findViewById(R.id.allmain);
-        allmain.setAnimation(mAnimationBtn);
+        allmain = findViewById(R.id.allmain);
+        //   allmain.setAnimation(mAnimationBtn);
 
 
         //
         if (Common.currentUser != null) {
             tv_currentuser = findViewById(R.id.tv_currentuser);
             tv_currentuser.setText(Common.currentUser.getName());
-        }else{
+        } else {
             Intent intent = new Intent(AllActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();

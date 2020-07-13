@@ -24,9 +24,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="Bienvenido"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_h1"
                 android:textStyle="bold" />
 
@@ -34,10 +34,11 @@
                 android:id="@+id/tv_currentuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="7dp"
                 android:gravity="center"
                 android:text="Usuario"
                 android:textSize="@dimen/text_size_h3"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
 
             <androidx.cardview.widget.CardView
@@ -253,14 +254,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="UNIDAD DE TRABAJO"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="10dp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_size_h3" />
 
             </LinearLayout>
 
