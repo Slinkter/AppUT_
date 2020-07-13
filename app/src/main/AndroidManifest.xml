@@ -37,6 +37,10 @@
         <activity android:name=".Init.LoginActivity" />
         <activity android:name=".Init.MainActivity" />
         <activity android:name=".Support.ShowPdfActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
