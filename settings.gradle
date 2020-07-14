@@ -1,2 +1,3 @@
+include ':hellocharts'
 include ':app'
 rootProject.name = "AppUTDemo"

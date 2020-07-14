@@ -48,6 +48,10 @@ dependencies {
     //
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
+    //
+
+    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
+
 }
 
 

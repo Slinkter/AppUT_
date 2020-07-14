@@ -88,7 +88,7 @@ public class AllActivity extends AppCompatActivity {
 
     public void btnVisualData(View view) {
         Toast.makeText(this, "Solo admin", Toast.LENGTH_SHORT).show();
-        //  Intent intent = new Intent(AllActivity.this, VisualActivity.class);
-        //  startActivity(intent);
+        Intent intent = new Intent(AllActivity.this, ViewChartActivity.class);
+        startActivity(intent);
     }
 }
