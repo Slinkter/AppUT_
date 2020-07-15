@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,7 +48,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private Personal personal;
-    private TextView show_name_visual_dni, meanTempe;
+    private TextView show_name_visual_dni, meanTempe , meanOxig, meanPulse;
     private LinearLayout visual_linerlayout;
 
     private DatabaseReference ref_datos_paciente;
@@ -60,8 +61,8 @@ public class ViewChartActivity extends AppCompatActivity {
     private List<Integer> listPulso;
 
     LineChartView lineChartViewTemperatura;
-    LineChartView lineChartViewSaturacion;
     LineChartView lineChartViewOxigeno;
+    LineChartView lineChartViewPulse;
 
 
     Button btnGenerarChart;
@@ -69,6 +70,10 @@ public class ViewChartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+        //
         setContentView(R.layout.activity_view_chart);
         //
         database = FirebaseDatabase.getInstance();
@@ -77,8 +82,14 @@ public class ViewChartActivity extends AppCompatActivity {
         visual_dni_layout = findViewById(R.id.visual_dni_layout);
         visual_dni = findViewById(R.id.visual_dni);
         btn_visual_dni = findViewById(R.id.btn_visual_dni);
+        //
         meanTempe = findViewById(R.id.meanTempe);
+        meanOxig = findViewById(R.id.meanOxig);
+        meanPulse = findViewById(R.id.meanPulse);
+
         lineChartViewTemperatura = findViewById(R.id.chart1);
+        lineChartViewOxigeno = findViewById(R.id.chart2);
+        lineChartViewPulse = findViewById(R.id.chart3);
 
         btn_visual_dni.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +201,7 @@ public class ViewChartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         tempShowChart();
+                        oxigShowChart();
                     }
                 });
 
@@ -205,6 +217,84 @@ public class ViewChartActivity extends AppCompatActivity {
 
     }
 
+    private void oxigShowChart() {
+        if (listDate != null && listSaturacion != null) {
+
+            List<String> list = new ArrayList<>();
+            list.addAll(listDate);
+            // String[] axisData = {"2020-05-12", "2020-05-12", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}; /// fecha
+            // int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+            String[] axisData = list.toArray(new String[0]);
+            int[] yAxisData = new int[listSaturacion.size()];
+            double suma = 0;
+            double promedio = 0.0f;
+            try {
+                for (int i = 0; i < listSaturacion.size(); i++) {
+                    suma = suma + Double.parseDouble(listSaturacion.get(i).toString());
+                    yAxisData[i] = (int) (Double.parseDouble(listSaturacion.get(i).toString()));
+                    // -> Log
+                    Log.e(TAG, " " + (int) (Double.parseDouble(listSaturacion.get(i).toString())));
+                    Log.e(TAG, "suma = " + suma);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "[error]" + e.getMessage());
+            }
+
+            promedio = suma / listSaturacion.size();
+
+            String cad = String.valueOf(promedio);
+
+            meanOxig.setText("Promedio oxigeno : " + cad.substring(0, 4));
+            meanOxig.setTextColor(Color.parseColor("#03A9F4"));
+
+
+            List yAxisValues = new ArrayList();
+            List axisValues = new ArrayList();
+
+            Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
+
+            for (int i = 0; i < axisData.length; i++) {
+                Log.e(TAG, "axisData " + i + " = " + axisData[i]);
+                axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+            }
+
+            for (int i = 0; i < yAxisData.length; i++) {
+                yAxisValues.add(new PointValue(i, (int) (yAxisData[i])));
+            }
+
+            List lines = new ArrayList();
+            lines.add(line);
+
+            LineChartData data = new LineChartData();
+            data.setLines(lines);
+
+            Axis axis = new Axis();
+            axis.setValues(axisValues);
+            axis.setTextSize(16);
+            axis.setName("días");
+            axis.setTextColor(Color.parseColor("#03A9F4"));
+            data.setAxisXBottom(axis);
+
+            Axis yAxis = new Axis();
+            yAxis.setName("Oxigeno");
+            yAxis.setTextColor(Color.parseColor("#03A9F4"));
+            yAxis.setTextSize(16);
+            data.setAxisYLeft(yAxis);
+
+
+            lineChartViewOxigeno.setLineChartData(data);
+            Viewport viewport = new Viewport(lineChartViewOxigeno.getMaximumViewport());
+            viewport.bottom = 80;
+            viewport.top = 110;
+            lineChartViewOxigeno.setMaximumViewport(viewport);
+            lineChartViewOxigeno.setCurrentViewport(viewport);
+        } else {
+            Log.e(TAG, "lista data null");
+        }
+
+    }
+
     private void tempShowChart() {
 
         if (listDate != null && listTemperatura != null) {
@@ -213,7 +303,7 @@ public class ViewChartActivity extends AppCompatActivity {
             list.addAll(listDate);
             String[] axisData = list.toArray(new String[0]);
             // String[] axisData = {"2020-05-12", "2020-05-12", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}; /// fecha
-            //     int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+            // int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
             int[] yAxisData = new int[listTemperatura.size()];
             double suma = 0;
             double promedio = 0.0f;
@@ -259,8 +349,6 @@ public class ViewChartActivity extends AppCompatActivity {
 
             LineChartData data = new LineChartData();
             data.setLines(lines);
-
-
 
             Axis axis = new Axis();
             axis.setValues(axisValues);

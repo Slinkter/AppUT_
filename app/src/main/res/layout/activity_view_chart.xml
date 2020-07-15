@@ -72,6 +72,8 @@
             android:id="@+id/visual_linerlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -86,9 +88,8 @@
             <lecho.lib.hellocharts.view.LineChartView
                 android:id="@+id/chart1"
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
-                android:layout_margin="10dp"
-                android:padding="20dp" />
+                android:layout_height="320dp"
+                android:padding="5dp" />
 
             <TextView
                 android:id="@+id/meanTempe"
@@ -99,10 +100,12 @@
             <lecho.lib.hellocharts.view.LineChartView
                 android:id="@+id/chart2"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:padding="20dp" />
+                android:layout_height="320dp"
+                android:padding="5dp" />
+
 
             <TextView
+                android:id="@+id/meanOxig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Promedio oxigeno : " />
@@ -110,13 +113,15 @@
             <lecho.lib.hellocharts.view.LineChartView
                 android:id="@+id/chart3"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:padding="20dp" />
+                android:layout_height="320dp"
+                android:padding="5dp" />
+
 
             <TextView
+                android:id="@+id/meanPulse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Promedio oxigeno : " />
+                android:text="Promedio pulse : " />
 
 
         </LinearLayout>
