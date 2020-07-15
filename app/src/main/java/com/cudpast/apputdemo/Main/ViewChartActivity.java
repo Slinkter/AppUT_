@@ -40,6 +40,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
 
     // todo : tiene datos  entrada y salida  dublica la data para hacer cuadros.
+    // todo : falta la validadion del dni
     public static final String TAG = ViewChartActivity.class.getSimpleName();
 
     private TextInputLayout visual_dni_layout;
@@ -202,6 +203,7 @@ public class ViewChartActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         tempShowChart();
                         oxigShowChart();
+                        pulseShowChart();
                     }
                 });
 
@@ -215,6 +217,84 @@ public class ViewChartActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void pulseShowChart() {
+
+        if (listDate != null && listPulso != null) {
+
+            List<String> list = new ArrayList<>();
+            list.addAll(listDate);
+            // String[] axisData = {"2020-05-12", "2020-05-12", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}; /// fecha
+            // int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+            String[] axisData = list.toArray(new String[0]);
+            int[] yAxisData = new int[listPulso.size()];
+            double suma = 0;
+            double promedio = 0.0f;
+            try {
+                for (int i = 0; i < listPulso.size(); i++) {
+                    suma = suma + Double.parseDouble(listPulso.get(i).toString());
+                    yAxisData[i] = (int) (Double.parseDouble(listPulso.get(i).toString()));
+                    // -> Log
+                    Log.e(TAG, " " + (int) (Double.parseDouble(listPulso.get(i).toString())));
+                    Log.e(TAG, "suma = " + suma);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "[error]" + e.getMessage());
+            }
+
+            promedio = suma / listPulso.size();
+
+            String cad = String.valueOf(promedio);
+
+            meanPulse.setText("Promedio pulse : " + cad.substring(0, 4));
+            meanPulse.setTextColor(Color.parseColor("#03A9F4"));
+
+
+            List yAxisValues = new ArrayList();
+            List axisValues = new ArrayList();
+
+            Line line = new Line(yAxisValues).setColor(Color.parseColor("#707070"));
+
+            for (int i = 0; i < axisData.length; i++) {
+                Log.e(TAG, "axisData " + i + " = " + axisData[i]);
+                axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+            }
+
+            for (int i = 0; i < yAxisData.length; i++) {
+                yAxisValues.add(new PointValue(i, (int) (yAxisData[i])));
+            }
+
+            List lines = new ArrayList();
+            lines.add(line);
+
+            LineChartData data = new LineChartData();
+            data.setLines(lines);
+
+            Axis axis = new Axis();
+            axis.setValues(axisValues);
+            axis.setTextSize(16);
+            axis.setName("días");
+            axis.setTextColor(Color.parseColor("#03A9F4"));
+            data.setAxisXBottom(axis);
+
+            Axis yAxis = new Axis();
+            yAxis.setName("Pulse");
+            yAxis.setTextColor(Color.parseColor("#03A9F4"));
+            yAxis.setTextSize(16);
+            data.setAxisYLeft(yAxis);
+
+
+            lineChartViewPulse.setLineChartData(data);
+            Viewport viewport = new Viewport(lineChartViewPulse.getMaximumViewport());
+            viewport.bottom = 50;
+            viewport.top = 115;
+            lineChartViewPulse.setMaximumViewport(viewport);
+            lineChartViewPulse.setCurrentViewport(viewport);
+        } else {
+            Log.e(TAG, "lista data null");
+        }
     }
 
     private void oxigShowChart() {
@@ -333,7 +413,7 @@ public class ViewChartActivity extends AppCompatActivity {
             List yAxisValues = new ArrayList();
             List axisValues = new ArrayList();
 
-            Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
+            Line line = new Line(yAxisValues).setColor(Color.parseColor("#FF2626"));
 
             for (int i = 0; i < axisData.length; i++) {
                 Log.e(TAG, "axisData " + i + " = " + axisData[i]);
