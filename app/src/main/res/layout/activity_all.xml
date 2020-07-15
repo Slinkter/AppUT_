@@ -16,7 +16,10 @@
             android:id="@+id/allmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -45,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="btnAddWorker"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -64,7 +67,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Registar\nTrabajador"
+                        android:text="Crear\nEmpleado"
                         android:textSize="@dimen/text_size_h3"
                         android:textStyle="bold" />
 
@@ -84,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="btnInputData"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -103,7 +106,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Registrar\nSintomas"
+                        android:text="Registrar\nSíntomas"
                         android:textSize="@dimen/text_size_h3"
                         android:textStyle="bold" />
 
@@ -112,7 +115,7 @@
                         android:layout_height="60dp"
                         android:layout_weight="1"
                         android:baselineAligned="false"
-                        android:src="@drawable/ic_personal_input" />
+                        android:src="@drawable/ic_agenda" />
 
 
                 </LinearLayout>
@@ -123,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="btnReportData"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -162,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="btnVisualData"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -201,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:onClick="btnDeleteWorker"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="@dimen/cardRadiusAll"
                 app:cardElevation="@dimen/card_elevation"
                 app:cardUseCompatPadding="true">
 
@@ -220,7 +223,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Dar de baja\nTrabajador"
+                        android:text="Editar\nEmpleado"
                         android:textSize="@dimen/text_size_h3"
                         android:textStyle="bold" />
 

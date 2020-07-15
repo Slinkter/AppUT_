@@ -57,25 +57,25 @@ public class AllActivity extends AppCompatActivity {
     public void btnAddWorker(View view) {
         Intent intent = new Intent(AllActivity.this, AddWorkerActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
     public void btnDeleteWorker(View view) {
         Intent intent = new Intent(AllActivity.this, DeleteWorkerActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
     public void btnInputData(View view) {
         Intent intent = new Intent(AllActivity.this, InputDataWorkerActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
     public void btnReportData(View view) {
         Intent intent = new Intent(AllActivity.this, ReportDataWorkerActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
 

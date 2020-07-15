@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:fitsSystemWindows="false"
+    android:orientation="vertical"
     tools:context=".Main.ViewChartActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20sp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -25,6 +27,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Visualizar datos"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/visual_dni_layout"
@@ -48,84 +60,101 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_visual_dni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="2dp"
-                    android:text="Buscar" />
-
-
                 <TextView
                     android:id="@+id/show_name_visual_dni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="nombre de trabajador"
+                    android:text=""
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_visual_dni"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Buscar" />
+
+                    <Button
+                        android:id="@+id/btnGenerarChart"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="Generar" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/visual_linerlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <lecho.lib.hellocharts.view.LineChartView
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/meanTempe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Promedio temperatura : " />
+
+                <lecho.lib.hellocharts.view.LineChartView
+                    android:id="@+id/chart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/meanOxig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Promedio oxigeno : " />
+
+                <lecho.lib.hellocharts.view.LineChartView
+                    android:id="@+id/chart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/meanPulse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Promedio pulso : " />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp" />
         </LinearLayout>
+    </ScrollView>
 
 
-        <LinearLayout
-            android:id="@+id/visual_linerlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <Button
-                android:id="@+id/btnGenerarChart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="Generar" />
-
-            <lecho.lib.hellocharts.view.LineChartView
-                android:id="@+id/chart1"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:padding="5dp" />
-
-            <TextView
-                android:id="@+id/meanTempe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Promedio temperatura : " />
-
-            <lecho.lib.hellocharts.view.LineChartView
-                android:id="@+id/chart2"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:padding="5dp" />
-
-
-            <TextView
-                android:id="@+id/meanOxig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Promedio oxigeno : " />
-
-            <lecho.lib.hellocharts.view.LineChartView
-                android:id="@+id/chart3"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:padding="5dp" />
-
-
-            <TextView
-                android:id="@+id/meanPulse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Promedio pulse : " />
-
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-</ScrollView>
+</LinearLayout>

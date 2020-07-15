@@ -97,18 +97,8 @@ public class AddWorkerActivity extends AppCompatActivity {
         btn_personal_create_user = findViewById(R.id.btn_personal_create_user);
         btn_personal_back_main = findViewById(R.id.btn_personal_back_main);
         //
-        btn_personal_create_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddWorkerActivity.this.createNewPersonal();
-            }
-        });
-        btn_personal_back_main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddWorkerActivity.this.gotoMAin();
-            }
-        });
+        btn_personal_create_user.setOnClickListener(v -> AddWorkerActivity.this.createNewPersonal());
+        btn_personal_back_main.setOnClickListener(v -> AddWorkerActivity.this.gotoMAin());
     }
 
 
