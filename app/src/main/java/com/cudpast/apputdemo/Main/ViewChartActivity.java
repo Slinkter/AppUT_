@@ -3,6 +3,7 @@ package com.cudpast.apputdemo.Main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private Personal personal;
-    private TextView show_name_visual_dni, meanTempe , meanOxig, meanPulse;
+    private TextView show_name_visual_dni, meanTempe, meanOxig, meanPulse;
     private LinearLayout visual_linerlayout;
 
     private DatabaseReference ref_datos_paciente;
@@ -66,7 +67,7 @@ public class ViewChartActivity extends AppCompatActivity {
     LineChartView lineChartViewPulse;
 
 
-    Button btnGenerarChart;
+    Button btnGenerarChart, btn_returnAllChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,17 @@ public class ViewChartActivity extends AppCompatActivity {
         });
 
         btnGenerarChart = findViewById(R.id.btnGenerarChart);
+
+
+        btn_returnAllChart = findViewById(R.id.btn_returnAllChart);
+        btn_returnAllChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewChartActivity.this, AllActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
@@ -248,14 +260,14 @@ public class ViewChartActivity extends AppCompatActivity {
 
             String cad = String.valueOf(promedio);
 
-            meanPulse.setText("Promedio pulse : " + cad.substring(0, 4));
+            meanPulse.setText("Promedio pulso : " + cad.substring(0, 4));
             meanPulse.setTextColor(Color.parseColor("#03A9F4"));
 
 
             List yAxisValues = new ArrayList();
             List axisValues = new ArrayList();
 
-            Line line = new Line(yAxisValues).setColor(Color.parseColor("#707070"));
+            Line line = new Line(yAxisValues).setColor(Color.parseColor("#11E6A5"));
 
             for (int i = 0; i < axisData.length; i++) {
                 Log.e(TAG, "axisData " + i + " = " + axisData[i]);

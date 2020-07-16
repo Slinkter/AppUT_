@@ -14,16 +14,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -31,22 +32,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:text="Consultar Datos"
+                    android:text="Consultar\nDatos"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimary"
                     android:textSize="25dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="8dp">
+                    android:foreground="?android:attr/selectableItemBackground"
+
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -56,6 +58,7 @@
                         android:layout_marginBottom="15dp"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:padding="10dp"
                         android:weightSum="5">
 
 
@@ -65,7 +68,7 @@
                             android:layout_margin="10dp"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="Consultar \npor fecha "
+                            android:text="Consultar\npor\nfecha "
 
                             android:textSize="16dp" />
 
@@ -94,9 +97,10 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="8dp">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,6 +110,7 @@
                         android:layout_marginBottom="15dp"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:padding="10dp"
                         android:weightSum="5">
 
 
@@ -115,7 +120,7 @@
                             android:layout_margin="10dp"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="Consultar \npor trabajador "
+                            android:text="Consultar\npor\ntrabajador "
 
                             android:textSize="16dp" />
 
@@ -145,9 +150,10 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="8dp">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -157,6 +163,7 @@
                         android:layout_marginBottom="15dp"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:padding="10dp"
                         android:weightSum="5">
 
 
@@ -166,7 +173,7 @@
                             android:layout_margin="10dp"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="Consultar \npor prueba rápida "
+                            android:text="Consultar\npor\nprueba rápida "
 
                             android:textSize="16dp" />
 
@@ -216,6 +223,11 @@
 
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp" />
 
         </LinearLayout>
 
