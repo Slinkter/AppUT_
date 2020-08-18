@@ -40,8 +40,8 @@ public class InputDataWorkerActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
 
-    private TextView show_consulta_nombre, show_consulta_edad;
-    private TextInputLayout show_consulta_nombre_layout, show_consulta_edad_layout;
+    private TextView show_consulta_fisrtname, show_consulta_lastname;
+    private TextInputLayout show_consulta_nombre_layout, show_consulta_last_layout;
     private TextInputLayout input_dni_layout, input_temperatura_layout, input_saturacion_layout, input_pulso_layout, input_sintomas_layout;
     LinearLayout input_new_sintomas_layout, input_examen_layout;
     private TextInputEditText input_dni, input_temperatura, input_saturacion, input_pulso;
@@ -65,11 +65,11 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        show_consulta_nombre = findViewById(R.id.show_consulta_nombre);
-        show_consulta_edad = findViewById(R.id.show_consulta_edad);
+        show_consulta_fisrtname = findViewById(R.id.show_consulta_fisrtname);
+        show_consulta_lastname = findViewById(R.id.show_consulta_lastname);
 
         show_consulta_nombre_layout = findViewById(R.id.show_consulta_nombre_layout);
-        show_consulta_edad_layout = findViewById(R.id.show_consulta_edad_layout);
+        show_consulta_last_layout = findViewById(R.id.show_consulta_last_layout);
 
         input_dni_layout = findViewById(R.id.input_dni_layout);
         input_temperatura_layout = findViewById(R.id.input_temperatura_layout);
@@ -231,7 +231,7 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         input_pulso_layout.setEnabled(false);
         //  input_sintomas_layout.setEnabled(false);
         show_consulta_nombre_layout.setEnabled(false);
-        show_consulta_edad_layout.setEnabled(false);
+        show_consulta_last_layout.setEnabled(false);
         s1.setEnabled(false);
         s2.setEnabled(false);
         s3.setEnabled(false);
@@ -350,10 +350,12 @@ public class InputDataWorkerActivity extends AppCompatActivity {
                 //
                 if (personal != null) {
                     //
-                    show_consulta_nombre.setText(personal.getName());
-                    show_consulta_edad.setText(personal.getAge() + " años");
-                    show_consulta_nombre.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color_cardview));
-                    show_consulta_edad.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color_cardview));
+
+                    show_consulta_fisrtname.setText(personal.getName().toUpperCase());
+                    show_consulta_lastname.setText(personal.getLast().toUpperCase());
+                    //
+                    show_consulta_fisrtname.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color_cardview));
+                    show_consulta_lastname.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color_cardview));
                     input_dni_layout.setError(null);
                     checkEnable();
                     //
@@ -362,9 +364,9 @@ public class InputDataWorkerActivity extends AppCompatActivity {
                     Log.e(TAG, "dirección : " + personal.getAddress());
                     Log.e(TAG, "phone 1 : " + personal.getPhone1());
                 } else {
-                    show_consulta_nombre.setText("");
-                    show_consulta_nombre.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.color_error));
-                    show_consulta_edad.setText("");
+                    show_consulta_fisrtname.setText("");
+                    show_consulta_fisrtname.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.color_error));
+                    show_consulta_lastname.setText("");
                     input_dni_layout.setError("El trabajador no exsite en la base de datos");
                     notEnable();
                     //

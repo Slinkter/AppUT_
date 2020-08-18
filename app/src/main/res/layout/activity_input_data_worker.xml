@@ -98,18 +98,19 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/show_consulta_nombre_layout"
+
+                        android:id="@+id/show_consulta_last_layout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/mb_input"
-                        android:hint="Nombre"
+                        android:hint="Apellidos"
                         app:endIconMode="custom"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_account">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/show_consulta_nombre"
+                            android:id="@+id/show_consulta_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number" />
@@ -117,23 +118,25 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/show_consulta_edad_layout"
+                        android:id="@+id/show_consulta_nombre_layout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/mb_input"
-                        android:hint="Edad"
+                        android:hint="Nombres"
                         app:endIconMode="custom"
                         app:errorEnabled="true"
-                        app:startIconDrawable="@drawable/ic_age">
+                        app:startIconDrawable="@drawable/ic_account">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/show_consulta_edad"
+                            android:id="@+id/show_consulta_fisrtname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+
 
                     <TextView
                         style="?android:attr/listSeparatorTextViewStyle"
@@ -536,19 +539,29 @@
 
                 </LinearLayout>
 
+                <TextView
+                    style="?android:attr/listSeparatorTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_below="@+id/connect_help"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15dip" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:weightSum="2">
 
                     <Button
                         android:id="@+id/btn_input_data"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/colorPrimary"
                         android:text="Ingresar" />
@@ -556,9 +569,9 @@
                     <Button
                         android:id="@+id/btn_input_back"
                         style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="1"
                         android:text="Regresar" />
                 </LinearLayout>
