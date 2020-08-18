@@ -46,11 +46,16 @@ public class InputDataWorkerActivity extends AppCompatActivity {
     LinearLayout input_new_sintomas_layout, input_examen_layout;
     private TextInputEditText input_dni, input_temperatura, input_saturacion, input_pulso;
     private EditText input_sintomas;
+
+    private CheckBox input_entrada, input_salida;
     private CheckBox input_test_yes, input_test_no;
+
+    boolean horario;
+    private boolean testfastcovid;
 
     private CheckBox s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;
     private Boolean sa1, sa2, sa3, sa4, sa5, sa6, sa7, sa8, sa9, sa10, sa11, sa12, sa13, sa14, sa15;
-    private boolean testfastcovid;
+
     private Personal personal;
     private Button btn_input_consulta, btn_input_saveData, btn_input_back;
 
@@ -87,6 +92,10 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         input_temperatura = findViewById(R.id.input_temperatura);
         input_saturacion = findViewById(R.id.input_saturacion);
         input_pulso = findViewById(R.id.input_pulso);
+
+        //
+        input_entrada = findViewById(R.id.input_entrada);
+        input_salida = findViewById(R.id.input_salida);
 
         input_sintomas = findViewById(R.id.input_sintomas);
         //
@@ -174,6 +183,7 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
 
         //
+        toggleCheckHorario();
         toggleCheck();
         // Button
         btn_input_consulta.setOnClickListener(v -> {
@@ -195,6 +205,25 @@ public class InputDataWorkerActivity extends AppCompatActivity {
             finish();
         });
 
+    }
+
+    private void toggleCheckHorario() {
+        input_entrada.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                input_salida.setEnabled(false);
+                horario = true;
+            } else {
+                input_salida.setEnabled(true);
+            }
+        });
+        input_salida.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                input_entrada.setEnabled(false);
+                horario = false;
+            } else {
+                input_entrada.setEnabled(true);
+            }
+        });
     }
 
     private void toggleCheck() {
@@ -239,6 +268,11 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         s5.setEnabled(false);
         s6.setEnabled(false);
         s7.setEnabled(false);
+
+        input_entrada.setEnabled(false);
+        input_salida.setEnabled(false);
+
+
         input_test_yes.setEnabled(false);
         input_test_no.setEnabled(false);
 
@@ -265,6 +299,8 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         input_test_no.setEnabled(true);
 
         //
+        input_entrada.setEnabled(true);
+        input_salida.setEnabled(true);
         //
         input_new_sintomas_layout.setEnabled(true);
         input_examen_layout.setEnabled(true);
@@ -272,6 +308,10 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
 
     private void savePersonalData() {
+
+        DatabaseReference ref_db_mina_personal_data = database.
+                getReference(Common.db_unidad_trabajo_data)
+                .child(Common.currentUser.getUid());
 
         Log.e(TAG, "save Personal Data");
         // fecha
@@ -291,6 +331,8 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         metricasPersonal.setSymptoms(symptoms);
         metricasPersonal.setDateRegister(dateRegister);
         metricasPersonal.setWho_user_register(Common.currentUser.getUid()); // requerido
+        metricasPersonal.setTestpruebarapida(testfastcovid);
+
         metricasPersonal.setS1(sa1);
         metricasPersonal.setS2(sa2);
         metricasPersonal.setS3(sa3);
@@ -299,10 +341,10 @@ public class InputDataWorkerActivity extends AppCompatActivity {
         metricasPersonal.setS6(sa6);
         metricasPersonal.setS7(sa7);
 
+        // si es verdadero es turno entrada
+        // si es falso es turno salida
+        metricasPersonal.setHorario(horario);
 
-        metricasPersonal.setTestpruebarapida(testfastcovid);
-
-        DatabaseReference ref_db_mina_personal_data = database.getReference(Common.db_unidad_trabajo_data).child(Common.currentUser.getUid());
 
         ref_db_mina_personal_data
                 .child(Common.unidadTrabajoSelected.getIdUT())
@@ -506,6 +548,12 @@ public class InputDataWorkerActivity extends AppCompatActivity {
             Toast.makeText(this, "falta  prueba rapida", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if ((input_entrada.isChecked() || !input_salida.isChecked()) && (!input_entrada.isChecked() || input_salida.isChecked())) {
+            Toast.makeText(this, "Falta validar el horario de Entrada/Salida", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
 
         return true;
     }

@@ -14,9 +14,18 @@ public class MetricasPersonal {
     private Boolean testpruebarapida;
 
     private String namepaciente;
+    private Boolean horario;
 
     public MetricasPersonal() {
 
+    }
+
+    public Boolean getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Boolean horario) {
+        this.horario = horario;
     }
 
     public String getNamepaciente() {
