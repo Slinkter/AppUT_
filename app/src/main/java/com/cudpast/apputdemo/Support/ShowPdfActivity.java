@@ -29,9 +29,6 @@ public class ShowPdfActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_show_pdf);
-
-
-        setContentView(R.layout.activity_show_pdf);
         pdfView = findViewById(R.id.pdfView);
         init();
 
