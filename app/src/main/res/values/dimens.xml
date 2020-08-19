@@ -17,4 +17,5 @@
     <dimen name="mb_card_all">15dp</dimen>
     <dimen name="text_size_h3">18sp</dimen>
     <dimen name="tx_size_checkout">16sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
