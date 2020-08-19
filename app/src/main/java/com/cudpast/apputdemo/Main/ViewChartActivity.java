@@ -40,8 +40,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 public class ViewChartActivity extends AppCompatActivity {
 
 
-    // todo : tiene datos  entrada y salida  dublica la data para hacer cuadros.
-    // todo : falta la validadion del dni
+
     public static final String TAG = ViewChartActivity.class.getSimpleName();
 
     private TextInputLayout visual_dni_layout;

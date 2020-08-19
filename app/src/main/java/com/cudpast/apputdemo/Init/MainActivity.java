@@ -129,21 +129,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkUserStatus();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        checkUserStatus();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkUserStatus();
+    }
+
     private void checkUserStatus() {
 
         Boolean status = Common.currentUser.getStatus();
 
         if (status) {
-            // todo : limitar a 20 unidades de trabajo
+
             user_status.setText("Premiun");
             final int numUT = 20;
             final int userNumUT = Common.currentUser.getNumUT();
             
             if ( numUT < userNumUT){
-                Toast.makeText(this, "Ello al lmite para crear  UT ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Usted llego  al límite para crear  UT ", Toast.LENGTH_SHORT).show();
                 addUT.setEnabled(false);
                 addUT.setVisibility(View.INVISIBLE);
-
                 Log.e(TAG,numUT +" < " + userNumUT);
             }else{
                 int diff = numUT-userNumUT;
