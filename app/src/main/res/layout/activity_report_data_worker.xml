@@ -15,219 +15,136 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/headland_one"
+                android:gravity="center"
+                android:text="Consultar Datos"
+                android:textAllCaps="true"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:text="Consultar\nDatos"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:weightSum="5">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="Consultar\npor\nfecha "
-
-                            android:textSize="16dp" />
-
-                        <ImageView
-                            android:id="@+id/img_reportdatepdf"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_pdf" />
-
-                        <ImageView
-                            android:id="@+id/img_reportmailpdf"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_gmail" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:weightSum="5">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="Consultar\npor\ntrabajador "
-
-                            android:textSize="16dp" />
-
-                        <ImageView
-                            android:id="@+id/img_reportworkpdf"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_pdf" />
-
-                        <ImageView
-                            android:id="@+id/img_reportworkgmail"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_gmail" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp"
-                        android:weightSum="5">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="Consultar\npor\nprueba rápida "
-
-                            android:textSize="16dp" />
-
-                        <ImageView
-                            android:id="@+id/img_reportexampdf"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_pdf" />
-
-                        <ImageView
-                            android:id="@+id/img_reportexamemail"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:baselineAligned="false"
-                            android:src="@drawable/ic_gmail" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
+                android:onClick="btn_entrada_pdf"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp"
+                app:cardMaxElevation="9dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:padding="15dp"
+                    android:weightSum="5">
 
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                    <ImageView
+
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:onClick="btnReturnAllMain"
-                        android:text="Regresar"
-                        android:textStyle="bold" />
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_date_range" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/headland_one"
+                        android:text="Entrada"
+                        android:textSize="@dimen/text_size_h1" />
+
                 </LinearLayout>
 
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-
-            <TextView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp" />
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:onClick="btn_salida_pdf"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_date_range" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/headland_one"
+                        android:text="Salida"
+                        android:textSize="@dimen/text_size_h1" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="btn_workerd"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:src="@drawable/ic_profile" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/headland_one"
+                        android:text="Trabajador"
+                        android:textSize="@dimen/text_size_h1" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

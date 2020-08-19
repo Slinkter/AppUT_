@@ -110,9 +110,11 @@ public class MainActivity extends AppCompatActivity {
                     if (listaUnidadMinera.get(position).equalsIgnoreCase("Seleccione Unidad")) {
                         btnContinuar.setVisibility(View.INVISIBLE);
                     } else {
-                        Log.e(TAG, " Unidad de trabajo : position " + (position - 1));
-                        Log.e(TAG, " Unidad de trabajo : nombre " + listaUT.get(position - 1).getNameUT());
+                        Log.e(TAG, " position " + (position - 1));
+                        Log.e(TAG, " getNameUT" + listaUT.get(position - 1).getNameUT());
+
                         Common.unidadTrabajoSelected = listaUT.get(position - 1);
+                        Log.e(TAG, "Common.unidadTrabajoSelected.getNameUT() " + Common.unidadTrabajoSelected.getNameUT());
                         btnContinuar.setVisibility(View.VISIBLE);
                         btnContinuar.setAnimation(mAnimationBtn);
                     }
@@ -140,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     private void getDataFromUser() {
