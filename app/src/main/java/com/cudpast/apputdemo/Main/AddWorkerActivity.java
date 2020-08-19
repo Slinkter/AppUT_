@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cudpast.apputdemo.Common.Common;
+import com.cudpast.apputdemo.Init.MainActivity;
 import com.cudpast.apputdemo.Model.Personal;
+import com.cudpast.apputdemo.Model.User;
 import com.cudpast.apputdemo.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,8 +35,8 @@ public class AddWorkerActivity extends AppCompatActivity {
 
     public static final String TAG = AddWorkerActivity.class.getSimpleName();
 
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
     Personal personal;
 
     private TextInputLayout
@@ -60,6 +63,8 @@ public class AddWorkerActivity extends AppCompatActivity {
 
     private Button btn_personal_create_user, btn_personal_back_main;
     private ProgressDialog mDialog;
+
+    LinearLayout linearLayoutRegistre, linearLayoutRegistreShowMjs;
 
     Boolean check;
 
@@ -93,11 +98,85 @@ public class AddWorkerActivity extends AppCompatActivity {
         personal_phone1_layout = findViewById(R.id.personal_phone1_layout);
         personal_phone2_layout = findViewById(R.id.personal_phone2_layout);
         //
+        linearLayoutRegistre = findViewById(R.id.linearLayoutRegistre);
+        linearLayoutRegistreShowMjs = findViewById(R.id.linearLayoutRegistreShowMjs);
+        //
         btn_personal_create_user = findViewById(R.id.btn_personal_create_user);
         btn_personal_back_main = findViewById(R.id.btn_personal_back_main);
         //
         btn_personal_create_user.setOnClickListener(v -> AddWorkerActivity.this.createNewPersonal());
         btn_personal_back_main.setOnClickListener(v -> AddWorkerActivity.this.gotoMAin());
+
+
+        try {
+            checkUserStatus();
+        } catch (Exception e) {
+            Log.e(TAG, "error " + e.getMessage());
+        }
+
+
+    }
+
+
+    private void checkUserStatus() {
+
+        Boolean status = Common.currentUser.getStatus();
+
+        if (status) {
+            // Version Premiun
+
+        } else {
+            //Version free
+            // db_unidad_trabajo_data > usuario uid [Vad7hyj0fgQ0jG97fUaf5ZPQNH83] >  UT [-MBCCbyJQJV3a-vxq7RK]   String firebaseUserUid = mAuth.getCurrentUser().getUid(); DatabaseReference ref =   database.getReference(Common.db_unidad_trabajo_data).child(Common.currentUser.getUid()).child(Common.unidadTrabajoSelected.getAliasUT());
+            OpenAll();
+
+            String firebaseUserUid = mAuth.getCurrentUser().getUid();
+
+            database.getReference()
+                    .child(Common.db_unidad_trabajo_personal)
+                    .child(firebaseUserUid)
+                    .child(Common.unidadTrabajoSelected.getIdUT()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int numLimite = 10;
+                    int numTrabajdores = (int) dataSnapshot.getChildrenCount();
+                    Log.e(TAG, " NUM DE TRABAJDORES " + numTrabajdores);
+
+
+                    if (numLimite <= numTrabajdores) {
+                        blockAll();
+                        //activar blockall() si es veradero
+                        //10 <= 11 ---> verdadero
+                        //10 <= 5 --> Falso
+                    } else {
+                        OpenAll();
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }
+    }
+
+    private void blockAll() {
+        linearLayoutRegistre.setVisibility(View.GONE);
+        btn_personal_create_user.setVisibility(View.GONE);
+        linearLayoutRegistreShowMjs.setVisibility(View.VISIBLE);
+
+    }
+
+    private void OpenAll() {
+
+        linearLayoutRegistre.setVisibility(View.VISIBLE);
+        btn_personal_create_user.setVisibility(View.VISIBLE);
+        linearLayoutRegistreShowMjs.setVisibility(View.GONE);
     }
 
 
@@ -106,41 +185,48 @@ public class AddWorkerActivity extends AppCompatActivity {
 
         if (submitForm()) {
 
-            mDialog = new ProgressDialog(AddWorkerActivity.this);
-            mDialog.setMessage(" Registrando trabajador ...");
-            mDialog.show();
+            try {
+                mDialog = new ProgressDialog(AddWorkerActivity.this);
+                mDialog.setMessage(" Registrando trabajador ...");
+                mDialog.show();
 
-            final String dni, name, last, age, address, born, date, phone1, phone2;
-            dni = personal_dni.getText().toString();
-            name = personal_name.getText().toString();
-            last = personal_last.getText().toString();
-            age = personal_age.getText().toString();
-            address = personal_address.getText().toString();
-            born = personal_born.getText().toString();
-            date = personal_date.getText().toString();
-            phone1 = personal_phone1.getText().toString();
-            phone2 = personal_phone2.getText().toString();
+                final String dni, name, last, age, address, born, date, phone1, phone2;
+                dni = personal_dni.getText().toString();
+                name = personal_name.getText().toString();
+                last = personal_last.getText().toString();
+                age = personal_age.getText().toString();
+                address = personal_address.getText().toString();
+                born = personal_born.getText().toString();
+                date = personal_date.getText().toString();
+                phone1 = personal_phone1.getText().toString();
+                phone2 = personal_phone2.getText().toString();
 
-            Personal worker = new Personal(dni, name, last, age, address, born, date, phone1, phone2);
-            String firebaseUserUid = mAuth.getCurrentUser().getUid();
+                Personal worker = new Personal(dni, name, last, age, address, born, date, phone1, phone2);
+                String firebaseUserUid = mAuth.getCurrentUser().getUid();
 
-            database.getReference()
-                    .child(Common.db_unidad_trabajo_personal)
-                    .child(firebaseUserUid)
-                    .child(Common.unidadTrabajoSelected.getIdUT())
-                    .child(worker.getDni())
-                    .setValue(worker)
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(AddWorkerActivity.this, "El trabajador ha sido registrado ", Toast.LENGTH_SHORT).show();
-                        gotoMAin();
+                database.getReference()
+                        .child(Common.db_unidad_trabajo_personal)
+                        .child(firebaseUserUid)
+                        .child(Common.unidadTrabajoSelected.getIdUT())
+                        .child(worker.getDni())
+                        .setValue(worker)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(AddWorkerActivity.this, "El trabajador ha sido registrado ", Toast.LENGTH_SHORT).show();
+                            gotoMAin();
 
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(AddWorkerActivity.this, "Trabajador no ha sido Registrado", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "[createNewPersonal()] error : " + e.getMessage());
-                        mDialog.dismiss();
-                    });
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(AddWorkerActivity.this, "Trabajador no ha sido Registrado", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "[createNewPersonal()] error : " + e.getMessage());
+                            mDialog.dismiss();
+                        });
+
+            } catch (Exception e) {
+                Log.e(TAG, "erro try-cath " + e.getMessage());
+            }
+
         }
+
 
     }
 
@@ -179,7 +265,7 @@ public class AddWorkerActivity extends AppCompatActivity {
                             check = true;
                         } else {
                             Log.e(TAG, "el trabjador no existe en  ");
-                         //   personal_dni_layout.setError("EL DNI disponible");
+                            //   personal_dni_layout.setError("EL DNI disponible");
                             check = false;
                         }
                     }

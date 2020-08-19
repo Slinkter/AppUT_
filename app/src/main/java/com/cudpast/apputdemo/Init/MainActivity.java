@@ -72,15 +72,8 @@ public class MainActivity extends AppCompatActivity {
         listaUT = new ArrayList<>();
         user_current.setText(Common.currentUser.getName());
 
-
-
         getDataFromUser();
-
         checkUserStatus();
-
-
-
-
 
         listaUnidadMinera.add("Buscar Unidad");
         for (int i = 0; i < listaUT.size(); i++) {
