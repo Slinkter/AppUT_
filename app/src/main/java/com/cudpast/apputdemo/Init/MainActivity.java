@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // todo : limitar a 20 unidades de trabajo
+   
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -134,7 +134,19 @@ public class MainActivity extends AppCompatActivity {
         Boolean status = Common.currentUser.getStatus();
 
         if (status) {
+            // todo : limitar a 20 unidades de trabajo
             user_status.setText("Premiun");
+            final int numUT = 20;
+            final int userNumUT = Common.currentUser.getNumUT();
+            
+            if ( numUT < userNumUT){
+                Toast.makeText(this, "Ya tiene mas de uno UT", Toast.LENGTH_SHORT).show();
+                Log.e(TAG,numUT +" < " + userNumUT);
+            }else{
+                int diff = numUT-userNumUT;
+                Toast.makeText(this, "te faltan " + diff + " UT para el límite", Toast.LENGTH_SHORT).show();
+            }
+            
             addUT.setOnClickListener(v -> showDialog());
         } else {
             //Version free
