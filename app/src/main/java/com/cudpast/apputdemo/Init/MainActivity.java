@@ -140,7 +140,10 @@ public class MainActivity extends AppCompatActivity {
             final int userNumUT = Common.currentUser.getNumUT();
             
             if ( numUT < userNumUT){
-                Toast.makeText(this, "Ya tiene mas de uno UT", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ello al lmite para crear  UT ", Toast.LENGTH_SHORT).show();
+                addUT.setEnabled(false);
+                addUT.setVisibility(View.INVISIBLE);
+
                 Log.e(TAG,numUT +" < " + userNumUT);
             }else{
                 int diff = numUT-userNumUT;
