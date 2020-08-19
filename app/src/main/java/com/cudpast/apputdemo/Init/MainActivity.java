@@ -39,6 +39,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // todo : limitar a 20 unidades de trabajo
+
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private Button btnContinuar;
@@ -69,31 +71,15 @@ public class MainActivity extends AppCompatActivity {
         listaUnidadMinera = new ArrayList<>();
         listaUT = new ArrayList<>();
         user_current.setText(Common.currentUser.getName());
-        Boolean status = Common.currentUser.getStatus();
+
 
 
         getDataFromUser();
 
+        checkUserStatus();
 
-        if (status) {
-            user_status.setText("Pago");
-            addUT.setOnClickListener(v -> showDialog());
-        } else {
-            //Version free
-            user_status.setText("Free");
-            final int numUT = 3;
-            final int userNumUT = Common.currentUser.getNumUT();
-            Log.e(TAG, " ut count = " + numUT);
-            Log.e(TAG, "user ut count = " + userNumUT);
-            addUT.setOnClickListener(v -> {
-                if (userNumUT < numUT) {
-                    showDialog();
-                    Toast.makeText(MainActivity.this, "tiene menos 3 unidades", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, " compre la versión completa  ", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+
+
 
 
         listaUnidadMinera.add("Buscar Unidad");
@@ -141,6 +127,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkUserStatus() {
+
+        Boolean status = Common.currentUser.getStatus();
+
+        if (status) {
+            user_status.setText("Premiun");
+            addUT.setOnClickListener(v -> showDialog());
+        } else {
+            //Version free
+            user_status.setText("Free");
+            final int numUT = 3;
+            final int userNumUT = Common.currentUser.getNumUT();
+            Log.e(TAG, " ut count = " + numUT);
+            Log.e(TAG, "user ut count = " + userNumUT);
+            addUT.setOnClickListener(v -> {
+                if (userNumUT < numUT) {
+                    showDialog();
+                    Toast.makeText(MainActivity.this, "tiene menos 3 unidades", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, " compre la versión completa  ", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
 

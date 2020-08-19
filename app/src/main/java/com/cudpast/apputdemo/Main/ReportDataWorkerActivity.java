@@ -78,7 +78,10 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
     List<String> listTemperatura;
     List<Integer> listSaturacion;
     List<Integer> listPulso;
-    //
+
+
+
+
     private List<MetricasPersonal> listtemp;
 
     @Override
@@ -107,55 +110,13 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
         }
     }
+    //===============================================================================
 
-    private void enableAll() {
+    public void btn_entrada_pdf(View view) {
 
-        /*
-        // Report 1
-        img_reportdatepdf.setOnClickListener(v -> selectDate("pdf"));
-        img_reportmailpdf.setOnClickListener(v -> selectDate("email"));
-        // Report 2
-        img_reportworkpdf.setOnClickListener(v -> showPdfDialog()); // <-- only free
-        img_reportworkgmail.setOnClickListener(v -> showEmailoDialog());
-        // Report 3
-        img_reportexampdf.setOnClickListener(v -> showTestEmailDNI("pdf"));
-        img_reportexamemail.setOnClickListener(v -> showTestEmailDNI("email"));
-
-        //extra
-        img_reportdatepdf.setEnabled(true);
-        img_reportmailpdf.setEnabled(true);
-
-        img_reportworkgmail.setEnabled(true);
-
-        img_reportexampdf.setEnabled(true);
-        img_reportexamemail.setEnabled(true);
-
-
-         */
-
-    }
-
-    private void disenablefAll() {
-
-        String mensaje = "Función solo para usuarios de pago ";
-
-        /*
-        img_reportdatepdf.setOnClickListener(v -> Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show());
-        img_reportmailpdf.setOnClickListener(v -> Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show());
-
-        img_reportworkpdf.setOnClickListener(v -> showPdfDialog()); // <-- only free
-        img_reportworkgmail.setOnClickListener(v -> Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show());
-
-        img_reportexampdf.setOnClickListener(v -> Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show());
-        img_reportexamemail.setOnClickListener(v -> Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show());
-
-         */
-    }
-
-
-    private void selectDate(String metodo) {
-
-
+        String metodo = "pdf";
+        Boolean horario = true;
+        //
         builder = MaterialDatePicker.Builder.datePicker();
         builder.setTitleText("Seleccionar Fecha");
         mdp = builder.build();
@@ -183,7 +144,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot != null) {
-                        //  dateTurnSelected(dataSnapshot, metodo,hora);
+                        dateTurnSelected(dataSnapshot, metodo, horario);
                     } else {
                         Log.e(TAG, "no existe unidad minera");
                     }
@@ -197,6 +158,75 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             });
             //
         });
+    }
+
+    public void btn_salida_pdf(View view) {
+        String metodo = "pdf";
+        Boolean horario = false;
+        //
+        builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Seleccionar Fecha");
+        mdp = builder.build();
+        mdp.show(getSupportFragmentManager(), "DATE_PICKER");
+        mdp.addOnPositiveButtonClickListener((MaterialPickerOnPositiveButtonClickListener<Long>) dateSelected -> {
+            // Show Dialog-waiting
+            mDialog = new ProgressDialog(ReportDataWorkerActivity.this);
+            mDialog.setMessage("Obteniendo datos ...");
+            mDialog.show();
+            // Transform date selected
+            seletedDate = timeStampToString(dateSelected);
+            // Init arrays
+            list_MetricasPersonales = new ArrayList<>();
+            listaPersonal = new ArrayList<>();
+            // Get Data From Firebase and init reference
+            ref_datos_paciente = database
+                    .getReference(Common.db_unidad_trabajo_data)
+                    .child(Common.currentUser.getUid())
+                    .child(Common.unidadTrabajoSelected.getIdUT());
+
+            Log.e(TAG, "select Date --> " + ref_datos_paciente.toString());
+            ref_datos_paciente.keepSynced(true);
+            ref_datos_paciente.orderByKey();
+            ref_datos_paciente.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot != null) {
+                        dateTurnSelected(dataSnapshot, metodo, horario);
+                    } else {
+                        Log.e(TAG, "no existe unidad minera");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e(TAG, "error : " + databaseError.getMessage());
+                    mDialog.dismiss();
+                }
+            });
+            //
+        });
+    }
+
+    public void btn_worker_pdf(View view) {
+        showPdfDialog("pdf");
+    }
+    //===============================================================================
+
+    private void enableAll() {
+
+
+        String mensaje = "Función solo para usuarios de pago ";
+
+
+
+    }
+
+    private void disenablefAll() {
+
+        String mensaje = "Función solo para usuarios free ";
+
+
+
     }
 
     private void dateTurnSelected(DataSnapshot dataAll, String metodo, boolean horario) {
@@ -238,7 +268,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         }
         //===================================================
         //--> Generar lista por horario
-
         for (int i = 0; i < arrayListDni.size(); i++) {
             Log.e(TAG, "dni : " + arrayListDni.get(i).toString());
             String dni = arrayListDni.get(i);
@@ -278,12 +307,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-        Log.e(TAG, " arrayListDni ..->" + arrayListDni.size());
-        Log.e(TAG, " listaMetricasPersonales ..->" + list_MetricasPersonales.size());
-
-
     }
 
     private void generarListaporFechaPdf(List<MetricasPersonal> listMetricasPersonal, List<Personal> listPersonal, String seletedDate, String metodo, boolean horario) {
@@ -978,7 +1001,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
     //===============================================================================
 
-    private void generarListaporPersonalPdf(String nombre, String metodo) {
+    private void generarListaTrabajadores_pdf(String nombre, String metodo) {
 
         Log.e(TAG, "---> generarListaporPersonalPdf()  ");
         Log.e(TAG, "generarListaporPersonalPdf list_MetricasPersonales : " + list_MetricasPersonales.size());
@@ -1042,7 +1065,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         myPaint.setStyle(Paint.Style.FILL);
 
         cansas01.drawText("Nro.", 35, 415, myPaint);
-        cansas01.drawText("Fecha y hora", 120, 415, myPaint);
+        cansas01.drawText("Fecha", 120, 415, myPaint);
         cansas01.drawText("Temp.", 290, 415, myPaint);
         cansas01.drawText("SO2", 390, 415, myPaint);
         cansas01.drawText("Pulso.", 490, 415, myPaint);
@@ -1263,10 +1286,10 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
     }
 
-    private void getDataFromFirebase(String dni, String nombre, String metodo) {
+    private void generarTrabajador_pdf(String dni, String nombre, String metodo) {
         Log.e(TAG, "-----> funcion  : getDataFromFirebase");
 
-        list_MetricasPersonales = new ArrayList<MetricasPersonal>();
+        list_MetricasPersonales = new ArrayList<>();
         listDate = new ArrayList<String>();
         listTemperatura = new ArrayList<>();
         listSaturacion = new ArrayList<>();
@@ -1284,28 +1307,28 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    MetricasPersonal metricasPersonal = snapshot.getValue(MetricasPersonal.class);
-                    if (metricasPersonal != null) {
-                        list_MetricasPersonales.add(metricasPersonal);
-                        listDate.add(metricasPersonal.getDateRegister().toString());
-                        listTemperatura.add((metricasPersonal.getTempurature()));
-                        listSaturacion.add(Integer.parseInt(metricasPersonal.getSo2()));
-                        listPulso.add(Integer.parseInt(metricasPersonal.getPulse()));
-
-                    } else {
-                        mDialog.dismiss();
-                        Log.e(TAG, "getDataFromFirebase --> MetricasPersonal = NULL");
-                    }
-                }
-                Log.e(TAG, "---> list_MetricasPersonales.size() : " + list_MetricasPersonales.size());
-                Log.e(TAG, "---> listDate : " + listDate.size());
-                Log.e(TAG, "---> listTemperatura : " + listTemperatura.size());
-                Log.e(TAG, "---> listSaturacion : " + listSaturacion.size());
-                Log.e(TAG, "---> listPulso : " + listPulso.size());
-
                 try {
-                    generarListaporPersonalPdf(nombre, metodo);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        MetricasPersonal metricasPersonal = snapshot.getValue(MetricasPersonal.class);
+                        if (metricasPersonal != null) {
+                            list_MetricasPersonales.add(metricasPersonal);
+                            listDate.add(metricasPersonal.getDateRegister().toString());
+                            listTemperatura.add((metricasPersonal.getTempurature()));
+                            listSaturacion.add(Integer.parseInt(metricasPersonal.getSo2()));
+                            listPulso.add(Integer.parseInt(metricasPersonal.getPulse()));
+                        } else {
+                            mDialog.dismiss();
+                            Log.e(TAG, "getDataFromFirebase --> MetricasPersonal = NULL");
+                        }
+                    }
+                    //
+                    generarListaTrabajadores_pdf(nombre, metodo);
+                    //
+                    Log.e(TAG, "---> list_MetricasPersonales.size() : " + list_MetricasPersonales.size());
+                    Log.e(TAG, "---> listDate.size() : " + listDate.size());
+                    Log.e(TAG, "---> listTemperatura.size() : " + listTemperatura.size());
+                    Log.e(TAG, "---> listSaturacion.size() : " + listSaturacion.size());
+                    Log.e(TAG, "---> listPulso.size() : " + listPulso.size());
                 } catch (Exception e) {
                     Log.e(TAG, "ERROR --> getDataFromFirebase : " + e.getMessage());
                     Toast.makeText(ReportDataWorkerActivity.this, "Error al Generar PDF ", Toast.LENGTH_SHORT).show();
@@ -1348,8 +1371,8 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showPdfDialog() {
-        String metodo = "pdf";
+    public void showPdfDialog(String metodo) {
+
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ReportDataWorkerActivity.this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.pop_up_report_dni, null);
@@ -1395,7 +1418,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                             Log.e(TAG, " personal.getName() : " + personal.getName());
                             report_dni_layout.setError(null);
                             String fullname = personal.getName() + " " + personal.getLast();
-                            getDataFromFirebase(dni, fullname, metodo);
+                            generarTrabajador_pdf(dni, fullname, metodo);
                         } else {
                             Log.e(TAG, " personal.getName() : null ");
                             mDialog.dismiss();
@@ -1468,7 +1491,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                             Log.e(TAG, " personal.getName() : " + personal.getName());
                             report_dni_layout.setError(null);
                             String fullname = personal.getName() + " " + personal.getLast();
-                            getDataFromFirebase(dni, fullname, metodo);
+                            generarTrabajador_pdf(dni, fullname, metodo);
                         } else {
                             Log.e(TAG, " personal.getName() : null ");
                             mDialog.dismiss();
@@ -1753,103 +1776,5 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         finish();
     }
 
-    public void btn_entrada_pdf(View view) {
 
-        String metodo = "pdf";
-        Boolean horario = true;
-        //
-        builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Seleccionar Fecha");
-        mdp = builder.build();
-        mdp.show(getSupportFragmentManager(), "DATE_PICKER");
-        mdp.addOnPositiveButtonClickListener((MaterialPickerOnPositiveButtonClickListener<Long>) dateSelected -> {
-            // Show Dialog-waiting
-            mDialog = new ProgressDialog(ReportDataWorkerActivity.this);
-            mDialog.setMessage("Obteniendo datos ...");
-            mDialog.show();
-            // Transform date selected
-            seletedDate = timeStampToString(dateSelected);
-            // Init arrays
-            list_MetricasPersonales = new ArrayList<>();
-            listaPersonal = new ArrayList<>();
-            // Get Data From Firebase and init reference
-            ref_datos_paciente = database
-                    .getReference(Common.db_unidad_trabajo_data)
-                    .child(Common.currentUser.getUid())
-                    .child(Common.unidadTrabajoSelected.getIdUT());
-
-            Log.e(TAG, "select Date --> " + ref_datos_paciente.toString());
-            ref_datos_paciente.keepSynced(true);
-            ref_datos_paciente.orderByKey();
-            ref_datos_paciente.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null) {
-                        dateTurnSelected(dataSnapshot, metodo, horario);
-                    } else {
-                        Log.e(TAG, "no existe unidad minera");
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.e(TAG, "error : " + databaseError.getMessage());
-                    mDialog.dismiss();
-                }
-            });
-            //
-        });
-    }
-
-    public void btn_salida_pdf(View view) {
-        String metodo = "pdf";
-        Boolean horario = false;
-        //
-        builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Seleccionar Fecha");
-        mdp = builder.build();
-        mdp.show(getSupportFragmentManager(), "DATE_PICKER");
-        mdp.addOnPositiveButtonClickListener((MaterialPickerOnPositiveButtonClickListener<Long>) dateSelected -> {
-            // Show Dialog-waiting
-            mDialog = new ProgressDialog(ReportDataWorkerActivity.this);
-            mDialog.setMessage("Obteniendo datos ...");
-            mDialog.show();
-            // Transform date selected
-            seletedDate = timeStampToString(dateSelected);
-            // Init arrays
-            list_MetricasPersonales = new ArrayList<>();
-            listaPersonal = new ArrayList<>();
-            // Get Data From Firebase and init reference
-            ref_datos_paciente = database
-                    .getReference(Common.db_unidad_trabajo_data)
-                    .child(Common.currentUser.getUid())
-                    .child(Common.unidadTrabajoSelected.getIdUT());
-
-            Log.e(TAG, "select Date --> " + ref_datos_paciente.toString());
-            ref_datos_paciente.keepSynced(true);
-            ref_datos_paciente.orderByKey();
-            ref_datos_paciente.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot != null) {
-                        dateTurnSelected(dataSnapshot, metodo, horario);
-                    } else {
-                        Log.e(TAG, "no existe unidad minera");
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.e(TAG, "error : " + databaseError.getMessage());
-                    mDialog.dismiss();
-                }
-            });
-            //
-        });
-    }
-
-    public void btn_workerd(View view) {
-
-        showPdfDialog();
-    }
 }

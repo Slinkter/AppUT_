@@ -28,13 +28,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddWorkerActivity extends AppCompatActivity {
-
+    // todo : limitar a registrar 10 trabajdo en version free
 
     public static final String TAG = AddWorkerActivity.class.getSimpleName();
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-
     Personal personal;
 
     private TextInputLayout

@@ -22,9 +22,10 @@ public class ShowPdfActivity extends AppCompatActivity {
 
     private PDFView pdfView;
     private File file;
-
+    FloatingActionButton fab;
     public static final String TAG = ShowPdfActivity.class.getSimpleName();
     public static final String folderpdf = "/arsi21.pdf";
+    //solo puede visualizar , al icono fab mostrar mensaje que solo veriones premiun puede aceder al envio de correo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,41 @@ public class ShowPdfActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_show_pdf);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
+        pdfView = findViewById(R.id.pdfView2);
+        checkStatusUser();
+        init();
+
+    }
+
+    private void checkStatusUser() {
+
+        if (Common.currentUser.getStatus()) {
+            enableAll();
+        } else {
+            disenablefAll();
+
+        }
+    }
+
+
+    private void enableAll() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(ShowPdfActivity.this, "Generando documentos ", Toast.LENGTH_SHORT).show();
                 sendEmail();
             }
         });
-        pdfView = findViewById(R.id.pdfView2);
-        init();
+    }
 
+    private void disenablefAll() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShowPdfActivity.this, "Solo para usuarios premiun ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
