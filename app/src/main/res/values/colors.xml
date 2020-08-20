@@ -6,9 +6,11 @@
 
 
     <color name="color_error">#FF0000</color>
+    <color name="color_error_null">#00BCD4</color>
     <color name="color_info_personal">#00BCD4</color>
     <color name="txt_color_rv_number">#707070</color>
     <color name="border_color_edge">#707070</color>
+
 
 
     <color name="rango_normal">#11E6A5</color>

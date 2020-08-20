@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-   
+   //todo : cuando se cambiar de version premiun a version free liminitar a 10 unidades
 
     public static final String TAG = MainActivity.class.getSimpleName();
 

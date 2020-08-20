@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main.ReportDataWorkerActivity" />
-        <activity android:name=".Main.DeleteWorkerActivity" />
+        <activity android:name=".Main.EditWorkerActivity" />
         <activity android:name=".Main.InputDataWorkerActivity" />
         <activity android:name=".Main.AllActivity" />
         <activity android:name=".Main.AddWorkerActivity" />

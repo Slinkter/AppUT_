@@ -61,7 +61,7 @@ public class AllActivity extends AppCompatActivity {
     }
 
     public void btnDeleteWorker(View view) {
-        Intent intent = new Intent(AllActivity.this, DeleteWorkerActivity.class);
+        Intent intent = new Intent(AllActivity.this, EditWorkerActivity.class);
         startActivity(intent);
 
     }
