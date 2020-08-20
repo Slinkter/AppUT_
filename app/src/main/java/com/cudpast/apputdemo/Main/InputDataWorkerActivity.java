@@ -392,7 +392,6 @@ public class InputDataWorkerActivity extends AppCompatActivity {
                 //
                 if (personal != null) {
                     //
-
                     show_consulta_fisrtname.setText(personal.getName().toUpperCase());
                     show_consulta_lastname.setText(personal.getLast().toUpperCase());
                     //
@@ -431,6 +430,7 @@ public class InputDataWorkerActivity extends AppCompatActivity {
     private boolean checkDNI() {
         if (input_dni.getText().toString().trim().isEmpty()) {
             input_dni_layout.setError("Ingrese su DNI");
+            input_dni_layout.requestFocus();
             return false;
         } else {
             input_dni_layout.setError(null);
@@ -440,28 +440,22 @@ public class InputDataWorkerActivity extends AppCompatActivity {
 
     private boolean checkTemperatura() {
 
-        try {
-            if (input_temperatura.getText().toString().trim().isEmpty() && input_temperatura.getText().toString() != null) {
-                input_temperatura_layout.setError("*Campo obligatorio");
-                input_temperatura_layout.requestFocus();
-                Log.e("number", " int   " + Integer.parseInt(input_temperatura.getText().toString()));
-                return false;
-            } else {
-                input_temperatura_layout.setError(null);
-                int value = Integer.parseInt(input_temperatura.getText().toString());
-                if (value < 35 || value > 43) {
-                    input_temperatura_layout.setError("ERROR: rango no válido para  temperatura ");
 
-                    input_temperatura_layout.requestFocus();
-                    return false;
-                }
-                Log.e(TAG, " number int   " + Integer.parseInt(input_temperatura.getText().toString()));
+        if (input_temperatura.getText().toString().trim().isEmpty() && input_temperatura.getText().toString() != null) {
+            input_temperatura_layout.setError("*Campo obligatorio");
+            input_temperatura_layout.requestFocus();
+            return false;
+        } else {
+            input_temperatura_layout.setError(null);
+            int value = Integer.parseInt(input_temperatura.getText().toString());
+            if (value < 35 || value > 43) {
+                input_temperatura_layout.setError("ERROR: rango no válido para  temperatura ");
+                input_temperatura_layout.requestFocus();
+                return false;
             }
 
-
-        } catch (Exception e) {
-            e.getMessage();
         }
+
 
         return true;
     }
@@ -488,6 +482,8 @@ public class InputDataWorkerActivity extends AppCompatActivity {
     }
 
     private boolean checkPulso() {
+
+
         if (input_pulso.getText().toString().trim().isEmpty() && input_pulso.getText().toString() != null) {
             input_pulso_layout.setError("*Campo obligatorio");
             input_pulso_layout.requestFocus();
