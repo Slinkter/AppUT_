@@ -3,9 +3,9 @@
     <dimen name="testsize">25dp</dimen>
 
 
-    <dimen name="textsmall">16sp</dimen>
-    <dimen name="textmedium">26sp</dimen>
-    <dimen name="textnormal">36sp</dimen>
+    <dimen name="textsmall">12sp</dimen>
+    <dimen name="textmedium">16sp</dimen>
+    <dimen name="textnormal">24sp</dimen>
     <dimen name="textbig">46sp</dimen>
 
 

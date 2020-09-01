@@ -48,6 +48,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -78,8 +79,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
     List<String> listTemperatura;
     List<Integer> listSaturacion;
     List<Integer> listPulso;
-
-
 
 
     private List<MetricasPersonal> listtemp;
@@ -218,13 +217,11 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         String mensaje = "Función solo para usuarios de pago ";
 
 
-
     }
 
     private void disenablefAll() {
 
         String mensaje = "Función solo para usuarios free ";
-
 
 
     }
@@ -1117,7 +1114,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             Log.e(TAG, "list_MetricasPersonales " + i + "  s6 " + list_MetricasPersonales.get(i).getS6());
             Log.e(TAG, "list_MetricasPersonales " + i + "  s7 " + list_MetricasPersonales.get(i).getS7());
             ysumname = ysumname + 50;
-            cansas01.drawText(listDate.get(i).substring(0, 10).trim(), 130, ytextname + ysumname, myPaint);
+            cansas01.drawText(listDate.get(i).substring(0, 10).trim(), 100, ytextname + ysumname, myPaint);
             /*
             cansas01.drawText(list_MetricasPersonales.get(i).getS2().toString(), 600, ytextname + ysumname, myPaint);
             cansas01.drawText(list_MetricasPersonales.get(i).getS2().toString(), 680, ytextname + ysumname, myPaint);
@@ -1171,7 +1168,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         for (int i = 0; i < size; i++) {
             ysum = ysum + 50;
             // Nro
-            cansas01.drawText(i + 1 + " ", 40, ytext + ysum, myPaint);
+            cansas01.drawText(i + 1 + " ", 42, ytext + ysum, myPaint);
             // Temperatura
             cansas01.drawText(listTemperatura.get(i).toString(), 300, ytext + ysum, myPaint);
             sumaTemp = sumaTemp + Double.parseDouble(listTemperatura.get(i).toString());
@@ -1695,8 +1692,9 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
         cansas01.drawText("Nro.", 65, 415, myPaint);
         cansas01.drawText("Fecha", 220, 415, myPaint);
-        cansas01.drawText("Temperatura", 470, 415, myPaint);
-        cansas01.drawText("Prueba Rápida.", 820, 415, myPaint);
+        //   cansas01.drawText("Temperatura", 470, 415, myPaint);
+        cansas01.drawText("Prueba Rápida.", 470, 415, myPaint);
+        cansas01.drawText("Proxima Prueba Rápida.", 820, 415, myPaint);
 
         cansas01.drawLine(140, 380, 140, 430, myPaint);
         cansas01.drawLine(410, 380, 410, 430, myPaint);
@@ -1738,9 +1736,14 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                 // Fecha
                 cansas01.drawText(listtemp.get(i).getDateRegister(), 160, ytext + ysum, myPaint);
                 // Temperatura
-                cansas01.drawText(listtemp.get(i).getTempurature(), 520, ytext + ysum, myPaint);
+                //       cansas01.drawText(listtemp.get(i).getTempurature(), 520, ytext + ysum, myPaint);
+                cansas01.drawText(testfast, 520, ytext + ysum, so);
                 // Prueba Rapida
-                cansas01.drawText(testfast, 880, ytext + ysum, so);
+
+                calcular(listtemp.get(i).getDateRegister() ,cansas01,880,ytext + ysum, so);
+
+
+                //cansas01.drawText(listtemp.get(i).getDateRegister(), 880, ytext + ysum, so);
                 //
             }
         }
@@ -1770,6 +1773,43 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
 
     }
 
+    private void calcular(String dateRegister, Canvas cansas01, int i, int i1, Paint so) {
+
+        final String cadena;
+        int dias = 15;
+
+
+        String sDate1 = dateRegister.substring(0, 10).trim().toString();
+
+        try {
+            Date date1;
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+            Log.e(TAG, "sDate1 = " + sDate1);
+            Log.e(TAG, "date1 b  = " + date1);
+
+            Date fecha = date1;
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(fecha); // Configuramos la fecha que se recibe
+            calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
+
+
+
+            cadena = calendar.getTime().toString();
+            String nuevotest = DateFormat.format("yyyy-MM-dd",calendar).toString();
+
+            cansas01.drawText(nuevotest, i, i1, so);
+            Log.e(TAG, "date1 a = " + date1);
+            Log.e(TAG, "cadena = " + cadena);
+        } catch (Exception e) {
+            Log.e(TAG, "try : " + e.getMessage());
+        }
+
+
+
+
+
+    }
+
     public void btnReturnAllMain(View view) {
         Intent intent = new Intent(ReportDataWorkerActivity.this, AllActivity.class);
         startActivity(intent);
@@ -1777,4 +1817,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
     }
 
 
+    public void btn_test_fast(View view) {
+        showTestEmailDNI("pdf");
+    }
 }
