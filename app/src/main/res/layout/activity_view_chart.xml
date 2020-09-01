@@ -108,78 +108,129 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="@dimen/card_elevation"
                     app:cardUseCompatPadding="true">
 
-                    <lecho.lib.hellocharts.view.LineChartView
-                        android:id="@+id/chart1"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="320dp"
-                        android:padding="5dp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Temperatura/Días" />
+
+                        <lecho.lib.hellocharts.view.LineChartView
+                            android:id="@+id/chart1"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/hight_chart" />
+
+                        <TextView
+                            android:id="@+id/meanTempe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Promedio : " />
+
+                    </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/meanTempe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Promedio temperatura : " />
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="@dimen/card_elevation"
                     app:cardUseCompatPadding="true">
 
-                    <lecho.lib.hellocharts.view.LineChartView
-                        android:id="@+id/chart2"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="320dp"
-                        android:padding="5dp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="SO2/Días" />
+
+                        <lecho.lib.hellocharts.view.LineChartView
+                            android:id="@+id/chart2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/hight_chart"
+                            android:padding="5dp" />
+
+                        <TextView
+                            android:id="@+id/meanOxig"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Promedio: " />
+
+
+                    </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
-
-
-
-
-                <TextView
-                    android:id="@+id/meanOxig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Promedio oxigeno : " />
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="@dimen/card_elevation"
                     app:cardUseCompatPadding="true">
 
-                    <lecho.lib.hellocharts.view.LineChartView
-                        android:id="@+id/chart3"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="320dp"
-                        android:padding="5dp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Pulso/Días" />
+
+
+                        <lecho.lib.hellocharts.view.LineChartView
+                            android:id="@+id/chart3"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/hight_chart"
+                            android:padding="5dp" />
+
+                        <TextView
+                            android:id="@+id/meanPulse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Promedio pulso : " />
+
+                    </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
 
-
-
-                <TextView
-                    android:id="@+id/meanPulse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Promedio pulso : " />
 
             </LinearLayout>
 

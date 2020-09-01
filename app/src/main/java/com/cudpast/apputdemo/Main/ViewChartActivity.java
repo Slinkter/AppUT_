@@ -259,7 +259,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
             String cad = String.valueOf(promedio);
 
-            meanPulse.setText("Promedio pulso : " + cad.substring(0, 4));
+            meanPulse.setText("Promedio : " + cad.substring(0, 4));
             meanPulse.setTextColor(Color.parseColor("#03A9F4"));
 
 
@@ -285,15 +285,15 @@ public class ViewChartActivity extends AppCompatActivity {
 
             Axis axis = new Axis();
             axis.setValues(axisValues);
-            axis.setTextSize(16);
-            axis.setName("días");
+            axis.setTextSize(10);
+         //   axis.setName("días");
             axis.setTextColor(Color.parseColor("#03A9F4"));
             data.setAxisXBottom(axis);
 
             Axis yAxis = new Axis();
-            yAxis.setName("Pulse");
+        //    yAxis.setName("Pulse");
             yAxis.setTextColor(Color.parseColor("#03A9F4"));
-            yAxis.setTextSize(16);
+            yAxis.setTextSize(10);
             data.setAxisYLeft(yAxis);
 
 
@@ -336,7 +336,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
             String cad = String.valueOf(promedio);
 
-            meanOxig.setText("Promedio oxigeno : " + cad.substring(0, 4));
+            meanOxig.setText("Promedio : " + cad.substring(0, 4));
             meanOxig.setTextColor(Color.parseColor("#03A9F4"));
 
 
@@ -362,15 +362,15 @@ public class ViewChartActivity extends AppCompatActivity {
 
             Axis axis = new Axis();
             axis.setValues(axisValues);
-            axis.setTextSize(16);
-            axis.setName("días");
+            axis.setTextSize(10);
+       //     axis.setName("días");
             axis.setTextColor(Color.parseColor("#03A9F4"));
             data.setAxisXBottom(axis);
 
             Axis yAxis = new Axis();
-            yAxis.setName("Oxigeno");
+      //      yAxis.setName("Oxigeno");
             yAxis.setTextColor(Color.parseColor("#03A9F4"));
-            yAxis.setTextSize(16);
+            yAxis.setTextSize(10);
             data.setAxisYLeft(yAxis);
 
 
@@ -417,7 +417,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
             String cad = String.valueOf(promedio);
 
-            meanTempe.setText("Promedio temperatura : " + cad.substring(0, 4));
+            meanTempe.setText("Promedio: " + cad.substring(0, 4));
             meanTempe.setTextColor(Color.parseColor("#03A9F4"));
 
 
@@ -443,15 +443,15 @@ public class ViewChartActivity extends AppCompatActivity {
 
             Axis axis = new Axis();
             axis.setValues(axisValues);
-            axis.setTextSize(16);
-            axis.setName("días");
+            axis.setTextSize(10);
+          //  axis.setName("días");
             axis.setTextColor(Color.parseColor("#03A9F4"));
             data.setAxisXBottom(axis);
 
             Axis yAxis = new Axis();
-            yAxis.setName("Temperatura");
+         //   yAxis.setName("Temperatura");
             yAxis.setTextColor(Color.parseColor("#03A9F4"));
-            yAxis.setTextSize(16);
+            yAxis.setTextSize(10);
             data.setAxisYLeft(yAxis);
 
             lineChartViewTemperatura.setLineChartData(data);

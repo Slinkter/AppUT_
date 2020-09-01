@@ -10,12 +10,13 @@
 
 
     <dimen name="mb_input">2dp</dimen>
-    <dimen name="cardRadiusAll">25dp</dimen>
+    <dimen name="cardRadiusAll">20dp</dimen>
     <dimen name="text_size_h1">26sp</dimen>
-    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
     <dimen name="mt_card_all">15dp</dimen>
     <dimen name="mb_card_all">15dp</dimen>
     <dimen name="text_size_h3">18sp</dimen>
     <dimen name="tx_size_checkout">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="hight_chart">260dp</dimen>
 </resources>
