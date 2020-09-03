@@ -175,7 +175,8 @@ public class ViewChartActivity extends AppCompatActivity {
                 .child(Common.unidadTrabajoSelected.getIdUT()) // -MBCCbyJQJV3a-vxq7 UT
                 .child(dni)
                 .orderByKey()
-                .limitToFirst(15);
+                .limitToLast(15);
+              //  .limitToFirst(20);
 
         Log.e(TAG, "path query" + query);
 
