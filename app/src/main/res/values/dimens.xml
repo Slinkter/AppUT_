@@ -4,7 +4,7 @@
 
 
     <dimen name="textsmall">12sp</dimen>
-    <dimen name="textmedium">16sp</dimen>
+    <dimen name="textmedium">14sp</dimen>
     <dimen name="textnormal">24sp</dimen>
     <dimen name="textbig">46sp</dimen>
 
@@ -19,4 +19,6 @@
     <dimen name="tx_size_checkout">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="hight_chart">260dp</dimen>
+    <dimen name="img_width_card">120dp</dimen>
+    <dimen name="img_height_card">130dp</dimen>
 </resources>

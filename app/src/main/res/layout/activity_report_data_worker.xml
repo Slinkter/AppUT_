@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".Main.ReportDataWorkerActivity">
 
@@ -15,19 +14,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_margin="10dp"
+
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:fontFamily="@font/headland_one"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Generar Reportes"
-                android:textAllCaps="true"
-                android:textSize="22sp"
+                android:text="Generar Reporte"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_h1"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -56,13 +55,14 @@
                         android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="75dp"
-                            android:layout_height="95dp"
+                            android:layout_width="@dimen/img_width_card"
+                            android:layout_height="@dimen/img_height_card"
                             android:src="@drawable/ic_pdf" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:layout_weight="4"
                             android:fontFamily="@font/headland_one"
                             android:gravity="center"
@@ -93,13 +93,14 @@
                         android:padding="15dp">
 
                         <ImageView
-                            android:layout_width="75dp"
-                            android:layout_height="95dp"
+                            android:layout_width="@dimen/img_width_card"
+                            android:layout_height="@dimen/img_height_card"
                             android:src="@drawable/ic_pdf" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:layout_weight="4"
                             android:fontFamily="@font/headland_one"
                             android:gravity="center"
@@ -140,13 +141,14 @@
                         android:weightSum="5">
 
                         <ImageView
-                            android:layout_width="75dp"
-                            android:layout_height="95dp"
+                            android:layout_width="@dimen/img_width_card"
+                            android:layout_height="@dimen/img_height_card"
                             android:src="@drawable/ic_pdf" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:layout_weight="4"
                             android:fontFamily="@font/headland_one"
                             android:gravity="center"
@@ -163,8 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
                     android:layout_weight="1"
-                    android:onClick="btn_test_fast"
                     android:clickable="true"
+                    android:onClick="btn_test_fast"
                     app:cardCornerRadius="@dimen/cardRadiusAll"
                     app:cardElevation="@dimen/card_elevation"
                     app:cardUseCompatPadding="true">
@@ -179,13 +181,14 @@
                         android:weightSum="5">
 
                         <ImageView
-                            android:layout_width="75dp"
-                            android:layout_height="95dp"
+                            android:layout_width="@dimen/img_width_card"
+                            android:layout_height="@dimen/img_height_card"
                             android:src="@drawable/ic_pdf" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
                             android:layout_weight="4"
                             android:fontFamily="@font/headland_one"
                             android:gravity="center"

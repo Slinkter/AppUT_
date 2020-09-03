@@ -1694,7 +1694,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         cansas01.drawText("Fecha", 220, 415, myPaint);
         //   cansas01.drawText("Temperatura", 470, 415, myPaint);
         cansas01.drawText("Prueba Rápida.", 470, 415, myPaint);
-        cansas01.drawText("Proxima Prueba Rápida.", 820, 415, myPaint);
+        cansas01.drawText("Próxima Prueba Rápida.", 820, 415, myPaint);
 
         cansas01.drawLine(140, 380, 140, 430, myPaint);
         cansas01.drawLine(410, 380, 410, 430, myPaint);
