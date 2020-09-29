@@ -58,12 +58,13 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="190dp"
+                        android:layout_height="@dimen/layout_cv_linear"
                         android:layout_marginTop="@dimen/mt_card_all"
                         android:layout_marginBottom="@dimen/mb_card_all"
                         android:gravity="center"
                         android:onClick="btnAddWorker"
                         android:orientation="vertical">
+
 
                         <ImageView
                             android:layout_width="@dimen/img_width_card"
@@ -71,7 +72,6 @@
                             android:layout_weight="1"
                             android:baselineAligned="false"
                             android:src="@drawable/ic_profile" />
-
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/layout_cv_linear"
                         android:layout_marginTop="@dimen/mt_card_all"
                         android:layout_marginBottom="@dimen/mb_card_all"
                         android:gravity="center"
@@ -147,7 +147,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/layout_cv_linear"
                         android:layout_marginTop="@dimen/mt_card_all"
                         android:layout_marginBottom="@dimen/mb_card_all"
                         android:gravity="center"
@@ -188,7 +188,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/layout_cv_linear"
                         android:layout_marginTop="@dimen/mt_card_all"
                         android:layout_marginBottom="@dimen/mb_card_all"
                         android:gravity="center"
@@ -237,7 +237,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/layout_cv_linear"
                         android:layout_marginTop="@dimen/mt_card_all"
                         android:layout_marginBottom="@dimen/mb_card_all"
                         android:gravity="center"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
+    android:background="@drawable/card_edge_data"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".Init.LoginActivity">
@@ -22,8 +23,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="145dp"
-                android:layout_height="145dp"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/ic_logo_app" />
 
@@ -84,14 +85,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:weightSum="2">
 
             <Button
                 android:id="@+id/btnLogin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimary"
                 android:elevation="5dp"
@@ -100,9 +100,8 @@
             <Button
                 android:id="@+id/btnRegister"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="Registrase" />
         </LinearLayout>

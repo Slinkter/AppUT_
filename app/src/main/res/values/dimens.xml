@@ -19,6 +19,7 @@
     <dimen name="tx_size_checkout">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="hight_chart">260dp</dimen>
-    <dimen name="img_width_card">120dp</dimen>
-    <dimen name="img_height_card">130dp</dimen>
+    <dimen name="img_width_card">100dp</dimen>
+    <dimen name="img_height_card">120dp</dimen>
+    <dimen name="layout_cv_linear">180dp</dimen>
 </resources>

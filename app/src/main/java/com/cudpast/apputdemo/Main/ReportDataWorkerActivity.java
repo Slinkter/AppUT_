@@ -376,7 +376,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             title.setTextAlign(Paint.Align.CENTER);
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
             title.setColor(Color.BLACK);
-            cansas01.drawText("UNIDADES ARSI ", pageWidth / 2, 80, title);
+            cansas01.drawText("UNIDAD", pageWidth / 2, 80, title);
             cansas01.drawText(Common.unidadTrabajoSelected.getNameUT(), pageWidth / 2, 150, title);
 
             Paint fecha = new Paint();
@@ -1024,7 +1024,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         title.setTextAlign(Paint.Align.CENTER);
         title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         title.setColor(Color.BLACK);
-        cansas01.drawText("UNIDADES ARSI ", pageWidth / 2, 80, title);
+        cansas01.drawText("UNIDAD", pageWidth / 2, 80, title);
 
         Paint fecha = new Paint();
         fecha.setTextSize(25f);
@@ -1357,7 +1357,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("text/plain");
         String message = "Documento Generado por " + Common.currentUser.getName();
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Unidades ARSI : " + Common.unidadTrabajoSelected.getNameUT() + "\n Saludos");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Unidades: " + Common.unidadTrabajoSelected.getNameUT() + "\n Saludos");
         intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + filelocation));
         intent.putExtra(Intent.EXTRA_TEXT, message);
         String currentusermail = Common.currentUser.getEmail();
@@ -1651,7 +1651,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         title.setTextAlign(Paint.Align.CENTER);
         title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         title.setColor(Color.BLACK);
-        cansas01.drawText("UNIDADES ARSI ", pageWidth / 2, 80, title);
+        cansas01.drawText("UNIDAD", pageWidth / 2, 80, title);
 
         Paint fecha = new Paint();
         fecha.setTextSize(25f);
