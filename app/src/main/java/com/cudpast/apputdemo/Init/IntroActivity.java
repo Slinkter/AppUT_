@@ -27,7 +27,7 @@ public class IntroActivity extends AppCompatActivity {
     private IntroViewPagerAdapter adapter;
     private TabLayout tabIndicator;
 
-    private ImageView mNextBtn;
+    private ImageView btn_img_next_arrow;
     private Button mStartedBtn;
 
     private int position;
@@ -50,7 +50,7 @@ public class IntroActivity extends AppCompatActivity {
         tv_skip = findViewById(R.id.tv_skip);
         viewPager = findViewById(R.id.viewPager);
         tabIndicator = findViewById(R.id.tab_indicator);
-        mNextBtn = findViewById(R.id.btn_next);
+        btn_img_next_arrow = findViewById(R.id.btn_img_next_arrow);
         mStartedBtn = findViewById(R.id.btn_get_started);
         mAnimationBtn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation);
         //
@@ -60,17 +60,14 @@ public class IntroActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabIndicator.setupWithViewPager(viewPager);
 //
-        mNextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                position = viewPager.getCurrentItem();
-                if (mList.size() - 1 == position) {
-                    loadLastScreen();
-                }
-                if (mList.size() - 1 > position) {
-                    position++;
-                    viewPager.setCurrentItem(position);
-                }
+        btn_img_next_arrow.setOnClickListener(v -> {
+            position = viewPager.getCurrentItem();
+            if (mList.size() - 1 == position) {
+                loadLastScreen();
+            }
+            if (mList.size() - 1 > position) {
+                position++;
+                viewPager.setCurrentItem(position);
             }
         });
 
@@ -93,13 +90,7 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-        tv_skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goIntent();
-
-            }
-        });
+        tv_skip.setOnClickListener(v -> goIntent());
 
 
     }
@@ -112,8 +103,8 @@ public class IntroActivity extends AppCompatActivity {
 
     private void InitData() {
         mList = new ArrayList<>();
-        mList.add(new ScreenItem(" ARSI UT   ", "Aplicativo para el registro de síntomas de personal ", R.drawable.ic_logo_app));
-        mList.add(new ScreenItem("Síntomas  ", "Register los síntomas de manera fácil y rápida de sus trabajadores", R.drawable.ic_intro_register));
+        mList.add(new ScreenItem("ARSI UT", "Aplicativo para el registro de síntomas de personal", R.drawable.ic_logo_app));
+        mList.add(new ScreenItem("Síntomas", "Register los síntomas de manera fácil y rápida de sus trabajadores", R.drawable.ic_intro_register));
         mList.add(new ScreenItem("Personal", "Register a sus personal con sus datos personales ", R.drawable.ic_intro_employee));
         mList.add(new ScreenItem("Reportes", "Genere reportes diarios por fecha , trabajador y/o prueba rápida", R.drawable.ic_intro_report));
         mList.add(new ScreenItem("Correo", "Exporte sus reportes vía email para tener un registro documentado fácil de visualizar", R.drawable.ic_gmail));
@@ -122,15 +113,10 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     private void loadLastScreen() {
-        mNextBtn.setVisibility(View.INVISIBLE);
+        btn_img_next_arrow.setVisibility(View.INVISIBLE);
         tabIndicator.setVisibility(View.INVISIBLE);
         mStartedBtn.setVisibility(View.VISIBLE);
         mStartedBtn.setAnimation(mAnimationBtn);
-        mStartedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goIntent();
-            }
-        });
+        mStartedBtn.setOnClickListener(v -> goIntent());
     }
 }

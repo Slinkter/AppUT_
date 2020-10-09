@@ -2,24 +2,19 @@ package com.cudpast.apputdemo.Main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cudpast.apputdemo.Common.Common;
-import com.cudpast.apputdemo.Init.MainActivity;
 import com.cudpast.apputdemo.Model.Personal;
-import com.cudpast.apputdemo.Model.User;
 import com.cudpast.apputdemo.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,10 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddWorkerActivity extends AppCompatActivity {
+public class CreateWorkerActivity extends AppCompatActivity {
     // todo : limitar a registrar 10 trabajdo en version free
 
-    public static final String TAG = AddWorkerActivity.class.getSimpleName();
+    public static final String TAG = CreateWorkerActivity.class.getSimpleName();
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -104,8 +99,8 @@ public class AddWorkerActivity extends AppCompatActivity {
         btn_personal_create_user = findViewById(R.id.btn_personal_create_user);
         btn_personal_back_main = findViewById(R.id.btn_personal_back_main);
         //
-        btn_personal_create_user.setOnClickListener(v -> AddWorkerActivity.this.createNewPersonal());
-        btn_personal_back_main.setOnClickListener(v -> AddWorkerActivity.this.gotoMAin());
+        btn_personal_create_user.setOnClickListener(v -> CreateWorkerActivity.this.createNewPersonal());
+        btn_personal_back_main.setOnClickListener(v -> CreateWorkerActivity.this.gotoMAin());
 
 
         try {
@@ -186,7 +181,7 @@ public class AddWorkerActivity extends AppCompatActivity {
         if (submitForm()) {
 
             try {
-                mDialog = new ProgressDialog(AddWorkerActivity.this);
+                mDialog = new ProgressDialog(CreateWorkerActivity.this);
                 mDialog.setMessage(" Registrando trabajador ...");
                 mDialog.show();
 
@@ -211,12 +206,12 @@ public class AddWorkerActivity extends AppCompatActivity {
                         .child(worker.getDni())
                         .setValue(worker)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(AddWorkerActivity.this, "El trabajador ha sido registrado ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateWorkerActivity.this, "El trabajador ha sido registrado ", Toast.LENGTH_SHORT).show();
                             gotoMAin();
 
                         })
                         .addOnFailureListener(e -> {
-                            Toast.makeText(AddWorkerActivity.this, "Trabajador no ha sido Registrado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateWorkerActivity.this, "Trabajador no ha sido Registrado", Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "[createNewPersonal()] error : " + e.getMessage());
                             mDialog.dismiss();
                         });
@@ -231,7 +226,7 @@ public class AddWorkerActivity extends AppCompatActivity {
     }
 
     private void gotoMAin() {
-        Intent intent = new Intent(AddWorkerActivity.this, AllActivity.class);
+        Intent intent = new Intent(CreateWorkerActivity.this, AllActivity.class);
         startActivity(intent);
         finish();
     }

@@ -63,12 +63,13 @@
                     android:background="@drawable/card_edge_data" />
 
                 <Button
+
                     android:id="@+id/btnContinuar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Aceptar"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -82,10 +83,10 @@
                 android:layout_height="30dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.958"
+                app:layout_constraintHorizontal_bias="0.946"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.142"
+                app:layout_constraintVertical_bias="0.144"
                 app:srcCompat="@drawable/ic_add" />
 
             <TextView
@@ -113,7 +114,7 @@
                 android:layout_margin="5dp"
                 android:layout_marginBottom="52dp"
                 android:gravity="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:text="status"
                 android:textStyle="bold"
                 android:textSize="@dimen/tx_size_checkout"

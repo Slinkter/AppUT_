@@ -64,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="6dp"
+                    android:backgroundTint="@color/colorAccent"
                     android:layout_weight="1"
                     android:text="Crear"
                     android:visibility="visible" />
@@ -75,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="6dp"
+                    android:textColor="@color/colorAccent"
                     android:layout_weight="1"
                     android:text="Salir"
                     android:visibility="visible" />

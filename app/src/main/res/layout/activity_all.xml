@@ -26,7 +26,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Bienvenido"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_h1"
                 android:textStyle="bold" />
 
@@ -334,7 +334,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="UNIDAD DE TRABAJO"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="10dp"
                     android:textStyle="bold" />
 

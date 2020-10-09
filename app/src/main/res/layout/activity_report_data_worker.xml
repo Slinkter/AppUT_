@@ -25,7 +25,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Generar Reporte"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_h1"
                 android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:text="Lista de Trabajadores"
-                android:textColor="@color/colorAccent"
+
                 android:textSize="@dimen/text_size_h3"
                 android:textStyle="normal" />
 
@@ -134,7 +134,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:text="Un Trabajador"
-                android:textColor="@color/colorAccent"
+
                 android:textSize="@dimen/text_size_h3"
                 android:textStyle="normal" />
 

@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-   //todo : cuando se cambiar de version premiun a version free liminitar a 10 unidades
+    //todo : cuando se cambiar de version premiun a version free liminitar a 10 unidades
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -149,18 +149,18 @@ public class MainActivity extends AppCompatActivity {
             user_status.setText("Premiun");
             final int numUT = 20;
             final int userNumUT = Common.currentUser.getNumUT();
-            
-            if ( numUT < userNumUT){
+
+            if (numUT < userNumUT) {
                 Toast.makeText(this, "Usted llego  al límite para crear  UT ", Toast.LENGTH_SHORT).show();
                 addUT.setEnabled(false);
                 addUT.setVisibility(View.INVISIBLE);
-                Log.e(TAG,numUT +" < " + userNumUT);
-            }else{
-                int diff = numUT-userNumUT;
+                Log.e(TAG, numUT + " < " + userNumUT);
+            } else {
+                int diff = numUT - userNumUT;
                 Toast.makeText(this, "te faltan " + diff + " UT para el límite", Toast.LENGTH_SHORT).show();
             }
-            
-            addUT.setOnClickListener(v -> showDialog());
+
+            addUT.setOnClickListener(v -> showPopUp_addUT());
         } else {
             //Version free
             user_status.setText("Free");
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "user ut count = " + userNumUT);
             addUT.setOnClickListener(v -> {
                 if (userNumUT < numUT) {
-                    showDialog();
+                    showPopUp_addUT();
                     Toast.makeText(MainActivity.this, "tiene menos 3 unidades", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, " compre la versión completa  ", Toast.LENGTH_SHORT).show();
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //
-    public void showDialog() {
+    public void showPopUp_addUT() {
         //
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -254,30 +254,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkUTFirebase(String nameUT, View v, TextInputLayout textInputLayout) {
 
-
         checkUT = false;
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Common.db_unidad_trabajo).child(Common.currentUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(Common.db_unidad_trabajo)
+                .child(Common.currentUser.getUid());
+
         reference
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //Obtener todas la unidades de trabajo
                         for (DataSnapshot d : dataSnapshot.getChildren()) {
+                            // setteando
                             UnidadTrabajo unidadTrabajo = d.getValue(UnidadTrabajo.class);
                             String nameUTFirebase = unidadTrabajo.getNameUT();
+                            //Preguntars si existe
                             if (nameUT.equals(nameUTFirebase)) {
-                                Log.e(TAG, " Coincide   ");
-                                // Toast.makeText(v.getContext(), " La unidad trabajo ya esta registrada", Toast.LENGTH_SHORT).show();
+                                Log.e(TAG, " ya existe en nombre de UT");
                                 textInputLayout.setError(" Ya existe la unidad de trabajo");
                                 checkUT = true;
                                 break;
                             }
-
-
                         }
 
                         if (!checkUT) {
-                            Log.e(TAG, "HOLAAAAAAAAA");
                             createUT(nameUT, v);
                         }
                     }
@@ -293,45 +294,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void createUT(String nameUT, final View view) {
-        final ProgressDialog mDialog;
-        mDialog = new ProgressDialog(view.getContext());
-        mDialog.setMessage("Obteniendo datos ...");
-        mDialog.show();
+
+        final ProgressDialog mDialogUT;
+        mDialogUT = new ProgressDialog(view.getContext());
+        mDialogUT.setMessage("Obteniendo datos ...");
+        mDialogUT.show();
         //db_unidad_trabajo - dni - unidad de trabajo
         DatabaseReference ref_db_ut = FirebaseDatabase.getInstance()
                 .getReference(Common.db_unidad_trabajo)
                 .child(Common.currentUser.getUid());
         //
-        ref_db_ut.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    UnidadTrabajo element = snapshot.getValue(UnidadTrabajo.class);
-                    listaUT.add(element);
-                }
-                numUT = (int) dataSnapshot.getChildrenCount();
-                Log.e("integer data.count()", "" + numUT);
-            }
+        ref_db_ut
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //Obtener lista de UT
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            UnidadTrabajo element = snapshot.getValue(UnidadTrabajo.class);
+                            listaUT.add(element);
+                        }
+                        // Cantidad de UT
+                        numUT = (int) dataSnapshot.getChildrenCount();
+                        Log.e("integer data.count()", "" + numUT);
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("error", databaseError.getMessage());
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("error", databaseError.getMessage());
+                    }
+                });
         // create UT
-        String cadKey = ref_db_ut.push().getKey();
-        Log.e("KEY ", cadKey);
-        //
-        final UnidadTrabajo ut = new UnidadTrabajo();
-        ut.setIdUT(cadKey);
-        ut.setNameUT(nameUT);
-        ut.setUser_ui(Common.currentUser.getUid());
+        String idUt = ref_db_ut.push().getKey();
+        final UnidadTrabajo new_ut = new UnidadTrabajo();
+        new_ut.setIdUT(idUt);
+        new_ut.setNameUT(nameUT);
+        new_ut.setUser_ui(Common.currentUser.getUid());
+        Log.e("idUT ", idUt);
         //
         ref_db_ut
-                .child(cadKey)
-                .setValue(ut)
+                .child(idUt)
+                .setValue(new_ut)
                 .addOnSuccessListener(aVoid -> {
-                    mDialog.dismiss();
+                    mDialogUT.dismiss();
                     Toast.makeText(view.getContext(), "Se creo unidad trabajo", Toast.LENGTH_SHORT).show();
                     DatabaseReference ref_db_user = FirebaseDatabase.getInstance()
                             .getReference(Common.db_user);
@@ -342,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
                             .setValue(numUT);
                 })
                 .addOnFailureListener(e -> {
-                    mDialog.dismiss();
+                    mDialogUT.dismiss();
                     Toast.makeText(view.getContext(), "no se creo la unidad de trabajo", Toast.LENGTH_SHORT).show();
                 });
     }

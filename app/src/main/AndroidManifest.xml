@@ -33,7 +33,7 @@
         <activity android:name=".Main.EditWorkerActivity" />
         <activity android:name=".Main.InputDataWorkerActivity" />
         <activity android:name=".Main.AllActivity" />
-        <activity android:name=".Main.AddWorkerActivity" />
+        <activity android:name=".Main.CreateWorkerActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".Init.RegisterActivity" />
         <activity android:name=".Init.LoginActivity" />

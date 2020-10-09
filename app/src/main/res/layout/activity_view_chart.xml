@@ -34,7 +34,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="Visualizar datos"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
@@ -83,6 +83,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccent"
                         android:text="Buscar" />
 
                     <Button
@@ -251,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Regresar"
                     android:textStyle="bold" />
             </LinearLayout>

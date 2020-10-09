@@ -7,7 +7,7 @@
     android:layout_gravity="center"
 
     android:orientation="vertical"
-    tools:context=".Main.AddWorkerActivity">
+    tools:context=".Main.CreateWorkerActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                     android:gravity="center"
                     android:text="Crear\nEmpleado"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
@@ -269,13 +269,14 @@
                     android:weightSum="2">
 
                     <Button
+
                         android:id="@+id/btn_personal_create_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/colorPrimary"
+                        android:backgroundTint="@color/colorAccent"
                         android:text="crear"
                         android:textStyle="bold" />
 
@@ -285,6 +286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:textColor="@color/colorAccent"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1"
                         android:text="Regresar"

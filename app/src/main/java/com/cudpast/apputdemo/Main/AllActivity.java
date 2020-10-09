@@ -55,7 +55,7 @@ public class AllActivity extends AppCompatActivity {
     }
 
     public void btnAddWorker(View view) {
-        Intent intent = new Intent(AllActivity.this, AddWorkerActivity.class);
+        Intent intent = new Intent(AllActivity.this, CreateWorkerActivity.class);
         startActivity(intent);
 
     }
