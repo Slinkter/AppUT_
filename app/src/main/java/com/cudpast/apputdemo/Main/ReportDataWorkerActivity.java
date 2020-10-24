@@ -1213,17 +1213,9 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             promedioSatura = sumaSatura / size;
             promedioPulse = sumaPulse / size;
 
-            Log.e(TAG, "promedioTemp : " + promedioTemp);
-            Log.e(TAG, "promedioSatura : " + promedioSatura);
-            Log.e(TAG, "promedioPulse : " + promedioPulse);
-
             String cadTemp = String.valueOf(promedioTemp);
             String cadSa = String.valueOf(promedioSatura);
             String cadPulse = String.valueOf(promedioPulse);
-
-            Log.e(TAG, "cadTemp : " + cadTemp);
-            Log.e(TAG, "cadSa : " + cadSa);
-            Log.e(TAG, "cadPulse : " + cadPulse);
 
             int reducir = 50;
 
@@ -1233,15 +1225,15 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             fontLeyenda.setColor(Color.BLACK);
 
             cansas01.drawText("Promedios ", 35, 1350 - reducir, fontLeyenda);
+            //
             cansas01.drawText("Promedio de los ultimos " + size + " medidas ", 35, 1400 - reducir, myPaint);
             cansas01.drawText("Promedio temperatura : " + cadTemp.substring(0, 4), 35, 1450 - reducir, myPaint);
             cansas01.drawText("Promedio SO2  : " + cadSa.substring(0, 4), 35, 1500 - reducir, myPaint);
             cansas01.drawText("Promedio pulso : " + cadPulse.substring(0, 4), 35, 1550 - reducir, myPaint);
-            //
 
 
             cansas01.drawText("Leyenda ", 35, 1600 - 20, fontLeyenda);
-
+            //
             cansas01.drawText("s1 : Tos ", 35, 1650, myPaint);
             cansas01.drawText("s2 : Dolor de garganta ", 35, 1700, myPaint);
             cansas01.drawText("s3 : Fiebre ", 35, 1750, myPaint);
@@ -1740,7 +1732,7 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
                 cansas01.drawText(testfast, 520, ytext + ysum, so);
                 // Prueba Rapida
 
-                calcular(listtemp.get(i).getDateRegister() ,cansas01,880,ytext + ysum, so);
+                calcular(listtemp.get(i).getDateRegister(), cansas01, 880, ytext + ysum, so);
 
 
                 //cansas01.drawText(listtemp.get(i).getDateRegister(), 880, ytext + ysum, so);
@@ -1793,9 +1785,8 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
             calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
 
 
-
             cadena = calendar.getTime().toString();
-            String nuevotest = DateFormat.format("yyyy-MM-dd",calendar).toString();
+            String nuevotest = DateFormat.format("yyyy-MM-dd", calendar).toString();
 
             cansas01.drawText(nuevotest, i, i1, so);
             Log.e(TAG, "date1 a = " + date1);
@@ -1803,9 +1794,6 @@ public class ReportDataWorkerActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(TAG, "try : " + e.getMessage());
         }
-
-
-
 
 
     }
