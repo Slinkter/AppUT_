@@ -19,9 +19,8 @@
         android:roundIcon="@drawable/ic_logo_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:name=".Main.ViewChartActivity"></activity>
+        <activity android:name=".Main.GraphicReport"></activity>
+        <activity android:name=".Main.ViewChartActivity" />
         <activity android:name=".Init.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
