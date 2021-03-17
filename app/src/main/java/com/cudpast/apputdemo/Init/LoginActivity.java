@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
